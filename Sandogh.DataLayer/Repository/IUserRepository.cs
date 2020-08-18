@@ -11,5 +11,6 @@ namespace Sandogh.DataLayer.Repository
     public interface IUserRepository
     {
         public Sp_Login_Result Login(string username, string password);
+        public IList<Vw_UsersJob> GetAllUser();
     }
 }

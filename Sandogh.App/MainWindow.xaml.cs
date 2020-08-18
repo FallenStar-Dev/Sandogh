@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Sandogh.DataLayer.Context;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,12 @@ namespace Sandogh.App
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            using (UnitOfWork a= new UnitOfWork())
+                DgvUsers.ItemsSource=a.UserRepository.GetAllUser();
         }
     }
 }
