@@ -14,7 +14,7 @@ namespace Sandogh.App
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : Window, IDisposable
     {
 
 
@@ -22,7 +22,6 @@ namespace Sandogh.App
         {
             InitializeComponent();
             Resetter();
-
         }
         /// <summary>
         /// how many time tried with incurrect username and password
@@ -32,7 +31,7 @@ namespace Sandogh.App
         {
             try
             {
-                using (UnitOfWork db = new UnitOfWork())
+                using UnitOfWork db = new UnitOfWork();
                 {
                     Sp_Login_Result user = db.UserRepository.Login(TxtUsername.Text, TxtPassword.Password);
                     if (user is null)
@@ -44,11 +43,12 @@ namespace Sandogh.App
                     else if (user?.TActivity == "فعال")
                     {
                         Global_variable.ActiveUser = user;
-                        ShowMainWindow();
-                    }
+                       this.DialogResult=true;
 
-                    db.Dispose();
+                    }
                 }
+
+
 
             }
             catch (Exception ex)
@@ -60,9 +60,8 @@ namespace Sandogh.App
         }
         private void ShowMainWindow()
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+
+
         }
 
         private void Resetter()
@@ -102,10 +101,15 @@ namespace Sandogh.App
             if (e.Key == Key.Enter)
             {
                 e.Handled = true;
-                BtnLogin_click(null,null);
+                BtnLogin_click(null, null);
             }
         }
 
+        public void Dispose() { }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Resetter();
+        }
     }
 }

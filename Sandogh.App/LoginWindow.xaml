@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandogh.App"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Topmost="True" ShowInTaskbar="False">
+        Title="LoginWindow" Visibility="Visible" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Topmost="True" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Window.TaskbarItemInfo>
         <TaskbarItemInfo/>
     </Window.TaskbarItemInfo>
