@@ -14,7 +14,7 @@ namespace Sandogh.DataLayer.Context
         private readonly Sandogh_DBEntities db = new Sandogh_DBEntities();
 
         private IUserRepository _UserRepository;
-        public IUserRepository UserRepository => _UserRepository ?? new UserRepository(db);
+        public IUserRepository UserRepository => _UserRepository ??= new UserRepository(db);
 
         public void Dispose() => db.Dispose();
     }

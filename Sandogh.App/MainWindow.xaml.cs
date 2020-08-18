@@ -10,10 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Sandogh.DataLayer.Context;
-
 
 namespace Sandogh.App
 {
@@ -25,30 +22,6 @@ namespace Sandogh.App
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void BtnLogin_click(object sender, RoutedEventArgs e)
-        {
-            using(UnitOfWork uof=new UnitOfWork())
-            {
-                Sp_Login_Result ActiveUser= uof.UserRepository.Login(TxtUsername.Text, TxtPassword.Password);
-                    MessageBox.Show(ActiveUser?.UserFirstName?.ToString());
-            }
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                DragMove();
-            }
-            catch{ }
-            
-        }
-
-        private void BtnExit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
     }
 }

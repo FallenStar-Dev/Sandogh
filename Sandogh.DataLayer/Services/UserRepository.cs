@@ -12,6 +12,6 @@ namespace Sandogh.DataLayer.Services
     {
         readonly Sandogh_DBEntities Sandogh_DB;
         public UserRepository(Sandogh_DBEntities dBEntities) => Sandogh_DB = dBEntities;
-        public Sp_Login_Result Login(string username, string password) => Sandogh_DB.Sp_Login(username, password).FirstOrDefault();
+        public Sp_Login_Result Login(string username, string password) => Sandogh_DB.Sp_Login(username, password).SingleOrDefault();
     }
 }
