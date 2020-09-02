@@ -1,0 +1,27 @@
+﻿<Window x:Class="Sandogh.App.Window_User"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sandogh.App"
+        mc:Ignorable="d"
+        Title="فرم کاربران" Height="450" Width="800" WindowStartupLocation="CenterOwner" >
+    <Grid>
+        <StackPanel>
+            <Button x:Name="BtnRefresh" Content="بروزرسانی" Width="100" Height="50" Click="BtnRefresh_Click"/>
+            <DataGrid x:Name="DgvUsers" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HeadersVisibility="All" IsTextSearchEnabled="True" FlowDirection="RightToLeft" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="کد کاربر" Visibility="Hidden" Binding="{Binding Path=UserID}"/>
+                    <DataGridTextColumn Header="نام" Binding="{Binding Path=UserFirstName}"/>
+                    <DataGridTextColumn Header="فامیل" Binding="{Binding Path=UserLastName}"/>
+                    <DataGridTextColumn Header="جنسیت" Binding="{Binding Path=TGender}"/>
+                    <DataGridTextColumn Header="نام کاربری" Binding="{Binding Path=UserName}"/>
+                    <DataGridTextColumn Header="رمز عبور" Binding="{Binding Path=Password}"/>
+                    <DataGridTextColumn Header="فعالیت" Binding="{Binding Path=TActivity}"/>
+                    <DataGridTextColumn Header="کد شغل" Visibility="Hidden" Binding="{Binding Path=JobID}"/>
+                    <DataGridTextColumn Header="سمت" Binding="{Binding Path=JobName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

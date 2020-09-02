@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandogh.App", "Sandogh.App\Sandogh.App.csproj", "{E16E0190-C16F-4078-B6F4-9A54F288927E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42815A10-CA1D-4DEC-B7DD-AB5084852DBA} = {42815A10-CA1D-4DEC-B7DD-AB5084852DBA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandogh.DataLayer", "Sandogh.DataLayer\Sandogh.DataLayer.csproj", "{A8E7F5D5-F94C-4A05-BAEF-9A1882E92E0F}"
 EndProject

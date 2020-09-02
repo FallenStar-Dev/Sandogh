@@ -43,7 +43,7 @@ namespace Sandogh.App
                     else if (user?.TActivity == "فعال")
                     {
                         Global_variable.ActiveUser = user;
-                       this.DialogResult=true;
+                        this.DialogResult = true;
 
                     }
                 }
@@ -81,12 +81,8 @@ namespace Sandogh.App
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            try { DragMove(); }
-            catch { }
-
+            if (e.LeftButton == MouseButtonState.Pressed) DragMove();
         }
-
-
 
         private void TxtUsername_KeyDown(object sender, KeyEventArgs e)
         {
@@ -105,7 +101,7 @@ namespace Sandogh.App
             }
         }
 
-        public void Dispose() { }
+        public void Dispose() { this.Close(); }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
