@@ -17,8 +17,8 @@ namespace Sandogh.DataLayer.Context
     
     public partial class Sandogh_DBEntities : DbContext
     {
-        public Sandogh_DBEntities()
-            : base("name=Sandogh_DBEntities")
+        public Sandogh_DBEntities(string connectionString)
+            : base(connectionString)
         {
         }
     
@@ -27,21 +27,131 @@ namespace Sandogh.DataLayer.Context
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Tbl_Jobs> Tbl_Jobs { get; set; }
-        public virtual DbSet<Tbl_Users> Tbl_Users { get; set; }
-        public virtual DbSet<Vw_UsersJob> Vw_UsersJob { get; set; }
+        public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Phone> Phones { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserSimpleView> UserSimpleViews { get; set; }
+        public virtual DbSet<UserFullView> UserFullViews { get; set; }
     
-        public virtual ObjectResult<Sp_Login_Result> Sp_Login(string username, string pass)
+        public virtual ObjectResult<Sp_Login_Result> Sp_Login(string username, string password)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("Username", username) :
                 new ObjectParameter("Username", typeof(string));
     
-            var passParameter = pass != null ?
-                new ObjectParameter("Pass", pass) :
-                new ObjectParameter("Pass", typeof(string));
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_Login_Result>("Sp_Login", usernameParameter, passParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_Login_Result>("Sp_Login", usernameParameter, passwordParameter);
+        }
+    
+        public virtual int Sp_AddUser(string userFirstName, string userLastName, string userName, string password, string email, Nullable<bool> gender, Nullable<bool> activity, string userPhone, byte[] userImage, string createDate, Nullable<int> usersJobID)
+        {
+            var userFirstNameParameter = userFirstName != null ?
+                new ObjectParameter("UserFirstName", userFirstName) :
+                new ObjectParameter("UserFirstName", typeof(string));
+    
+            var userLastNameParameter = userLastName != null ?
+                new ObjectParameter("UserLastName", userLastName) :
+                new ObjectParameter("UserLastName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(bool));
+    
+            var activityParameter = activity.HasValue ?
+                new ObjectParameter("Activity", activity) :
+                new ObjectParameter("Activity", typeof(bool));
+    
+            var userPhoneParameter = userPhone != null ?
+                new ObjectParameter("UserPhone", userPhone) :
+                new ObjectParameter("UserPhone", typeof(string));
+    
+            var userImageParameter = userImage != null ?
+                new ObjectParameter("UserImage", userImage) :
+                new ObjectParameter("UserImage", typeof(byte[]));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var usersJobIDParameter = usersJobID.HasValue ?
+                new ObjectParameter("UsersJobID", usersJobID) :
+                new ObjectParameter("UsersJobID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sp_AddUser", userFirstNameParameter, userLastNameParameter, userNameParameter, passwordParameter, emailParameter, genderParameter, activityParameter, userPhoneParameter, userImageParameter, createDateParameter, usersJobIDParameter);
+        }
+    
+        public virtual int Sp_AddUser1(string userFirstName, string userLastName, string userName, string password, string email, Nullable<bool> gender, Nullable<bool> activity, string userPhone, byte[] userImage, string createDate, Nullable<int> usersJobID)
+        {
+            var userFirstNameParameter = userFirstName != null ?
+                new ObjectParameter("UserFirstName", userFirstName) :
+                new ObjectParameter("UserFirstName", typeof(string));
+    
+            var userLastNameParameter = userLastName != null ?
+                new ObjectParameter("UserLastName", userLastName) :
+                new ObjectParameter("UserLastName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(bool));
+    
+            var activityParameter = activity.HasValue ?
+                new ObjectParameter("Activity", activity) :
+                new ObjectParameter("Activity", typeof(bool));
+    
+            var userPhoneParameter = userPhone != null ?
+                new ObjectParameter("UserPhone", userPhone) :
+                new ObjectParameter("UserPhone", typeof(string));
+    
+            var userImageParameter = userImage != null ?
+                new ObjectParameter("UserImage", userImage) :
+                new ObjectParameter("UserImage", typeof(byte[]));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var usersJobIDParameter = usersJobID.HasValue ?
+                new ObjectParameter("UsersJobID", usersJobID) :
+                new ObjectParameter("UsersJobID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sp_AddUser1", userFirstNameParameter, userLastNameParameter, userNameParameter, passwordParameter, emailParameter, genderParameter, activityParameter, userPhoneParameter, userImageParameter, createDateParameter, usersJobIDParameter);
+        }
+    
+        public virtual ObjectResult<Sp_GetUserWithJobDetailByID_Result> Sp_GetUserWithJobDetailByID(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_GetUserWithJobDetailByID_Result>("Sp_GetUserWithJobDetailByID", iDParameter);
         }
     }
 }

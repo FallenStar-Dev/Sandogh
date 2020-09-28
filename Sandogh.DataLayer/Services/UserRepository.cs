@@ -1,23 +1,72 @@
-﻿using System;
+﻿using Sandogh.DataLayer.Context;
+using Sandogh.DataLayer.Repository;
+
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-using Sandogh.DataLayer.Context;
-using Sandogh.DataLayer.Repository;
 namespace Sandogh.DataLayer.Services
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : GenericRepository<User>, IUserRepository<User>
     {
-        readonly Sandogh_DBEntities Sandogh_DB;
-        public UserRepository(Sandogh_DBEntities dBEntities) => Sandogh_DB = dBEntities;
+        private readonly Sandogh_DBEntities _db;
 
 
-        public Sp_Login_Result Login(string username, string password) => Sandogh_DB.Sp_Login(username, password).SingleOrDefault();
-        public IList<Vw_UsersJob> GetAllUser()
+
+        private readonly DbSet<UserRepository> _dbSet;
+        public UserRepository(Sandogh_DBEntities db) : base(db)
         {
-           return Sandogh_DB.Vw_UsersJob.ToList();
+            _db = db;
+            _dbSet = _db.Set<UserRepository>();
         }
+
+        public IList<UserSimpleView> GetAllUserSimpleDetails()
+        {
+            return _db.UserSimpleViews.ToList();
+        }
+
+        public UserFullView GetUserFullDetailsByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        /* public IList<Vw_UsersJob> GetAllUserWithJobDetails()
+         {
+             return _db.Vw_UsersJob.ToList();
+         }  */
+
+        public UserFullView GetUserWithJobDetailsByID(int id)
+        {
+            return _db.UserFullViews.Find(id);
+        }
+
+
+
+        public UserFullView Login(string username, string password)
+        {
+            return _db.UserFullViews.Where
+                (c => c.UserName.Equals(username) && c.Password.Equals(password)).SingleOrDefault();
+        }
+
+
+
+        IEnumerable<User> IGenericRepository<User>.GetAll()
+        {
+            return base.Get();
+        }
+
+        IList<UserFullView> IUserRepository<User>.GetAllUserFullDetails()
+        {
+            return _db.UserFullViews.ToList();
+        }
+
+
+
     }
 }
