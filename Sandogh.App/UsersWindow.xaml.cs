@@ -28,6 +28,7 @@ namespace Sandogh.App
         public UsersWindow()
         {
             InitializeComponent();
+            RefreshDataGrid();
             /*    برای ذخیره تنظیمات بعد از خروج از برنامه
             Properties.Settings.Default.Hi="hello";           
             Properties.Settings.Default.Save();            

@@ -39,13 +39,13 @@
                         <materialDesign:PackIcon Kind="User" Width="30" Height="30" Foreground="White"/>
                         <TextBox Name="TxtUsername" Margin="10 0" materialDesign:HintAssist.Hint="نام کاربری را وارد کنید" 
                                  Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" 
-                                 KeyDown="TxtUsername_KeyDown" MaxLines="1" MaxLength="95"
+                                 KeyDown="TxtUsername_KeyDown" MaxLines="1" MaxLength="95" Text="a"
                                  FlowDirection="RightToLeft" FontFamily="/Sandogh.App;component/Font/#Lalezar" AllowDrop="False" TabIndex="0">
                         </TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="Lock" Width="30" Height="30" Foreground="White"/>
-                        <PasswordBox Name="TxtPassword" Margin="10 0" materialDesign:HintAssist.Hint="رمز عبور را وارد کنید" Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" 
+                        <PasswordBox Name="TxtPassword" Margin="10 0" Password="a" materialDesign:HintAssist.Hint="رمز عبور را وارد کنید" Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" 
                                      KeyDown="TxtPassword_KeyDown" FlowDirection="RightToLeft" FontFamily="/Sandogh.App;component/Font/#Lalezar" AllowDrop="False" TabIndex="1">
                         </PasswordBox>
                     </StackPanel>

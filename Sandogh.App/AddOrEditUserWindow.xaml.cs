@@ -21,12 +21,19 @@ namespace Sandogh.App
     /// </summary>
     public partial class AddOrEditUserWindow : Window
     {
+        UserFullView userFullView;
         public AddOrEditUserWindow(int id)
         {
             InitializeComponent();
             TxtID.Text = id.ToString();
             UnitOfWork unitOfWork = new UnitOfWork();
-            UserFullView fullView = unitOfWork.UserGenericRepository.GetUserFullDetailsByID(id);
+            userFullView = unitOfWork.UserGenericRepository.GetUserFullDetailsByID(id);
+            FillForm();
+        }
+        private void FillForm()
+        {
+            StkPanel.DataContext = userFullView;
+           // TxtName.Text = userFullView.Name;
         }
     }
 }

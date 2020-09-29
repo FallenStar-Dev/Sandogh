@@ -1,12 +1,44 @@
-﻿<Window x:Class="Sandogh.App.AddOrEditUserWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandogh.App"
+        xmlns:Context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.AddOrEditUserWindow"
         mc:Ignorable="d"
         Title="AddOrEditUserWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Name="TxtID" HorizontalAlignment="Left" Margin="206,29,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="19" Width="384"/>
+        <TextBlock x:Name="TxtID" HorizontalAlignment="Right" Margin="0,351,28,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="44" Width="175"/>
+        <StackPanel x:Name="StkPanel" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource MaterialDesignTextBox}" TargetType="{x:Type TextBox}">
+                    <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="Padding" Value="2"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Vertical" Width="300">
+                <TextBox x:Name="TxtJob"  Text="{Binding NationalCode}" materialDesign:HintAssist.Hint="کدملی را وارد کنید"/>
+                <TextBox x:Name="TxtName"  Text="{Binding Name}" materialDesign:HintAssist.Hint="نام را وارد کنید"/>
+                <TextBox x:Name="TxtFamily" Text="{Binding Family}" materialDesign:HintAssist.Hint="فامیل را وارد کنید"/>
+                <TextBox  Text="{Binding UserName}" materialDesign:HintAssist.Hint="نام کاربری را وارد کنید"/>
+                <TextBox  Text="{Binding Password}" materialDesign:HintAssist.Hint="رمزعبور را وارد کنید"/>
+                <TextBox  Text="{Binding TGender}" materialDesign:HintAssist.Hint="جنسیت را وارد کنید"/>
+                <TextBox  Text="{Binding Email}" materialDesign:HintAssist.Hint="ایمیل را وارد کنید"/>
+                <TextBox  Text="{Binding TActivity}" materialDesign:HintAssist.Hint="فعالیت را وارد کنید"/>
+                <TextBox  Text="{Binding JobName}" materialDesign:HintAssist.Hint="سمت را وارد کنید"/>
+                <TextBox  Text="{Binding PhoneNumber}" materialDesign:HintAssist.Hint="موبایل را وارد کنید"/>
+
+            </StackPanel>
+            <StackPanel Width="300">
+                <TextBlock Text="جنسیت" HorizontalAlignment="Right"/>
+                <ComboBox SelectedIndex="{Binding Gender}" materialDesign:HintAssist.Hint="جنسیت" Text="جنسیت را انتخاب کنید">
+                    <ComboBoxItem Tag="0" Content="زن"/>
+                    <ComboBoxItem Tag="1" Content="مرد" />
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
