@@ -12,16 +12,18 @@ namespace Sandogh.DataLayer.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Vw_UsersJob
+    public partial class Job
     {
-        public int UserID { get; set; }
-        public string UserFirstName { get; set; }
-        public string UserLastName { get; set; }
-        public string TActivity { get; set; }
-        public string TGender { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Job()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
         public int JobID { get; set; }
         public string JobName { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

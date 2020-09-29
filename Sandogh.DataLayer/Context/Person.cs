@@ -12,18 +12,25 @@ namespace Sandogh.DataLayer.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Jobs
+    public partial class Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tbl_Jobs()
+        public Person()
         {
-            this.Tbl_Users = new HashSet<Tbl_Users>();
+            this.Phones = new HashSet<Phone>();
+            this.Users = new HashSet<User>();
         }
     
-        public int JobID { get; set; }
-        public string JobName { get; set; }
+        public int PersonID { get; set; }
+        public string NationalCode { get; set; }
+        public string Name { get; set; }
+        public string Family { get; set; }
+        public bool Gender { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Users> Tbl_Users { get; set; }
+        public virtual ICollection<Phone> Phones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

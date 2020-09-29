@@ -5,10 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4bd075b0cbb34387ae759e8d6d9c0c65" Name="Diagram1">
-        <EntityTypeShape EntityType="Sandogh_DBModel.Tbl_Jobs" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="Sandogh_DBModel.Tbl_Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Sandogh_DBModel.Vw_UsersJob" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="Sandogh_DBModel.UsersJob_PK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Sandogh_DBModel.Job" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Sandogh_DBModel.Person" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="Sandogh_DBModel.Phone" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="Sandogh_DBModel.User" Width="1.5" PointX="6" PointY="3.125" />
+        <EntityTypeShape EntityType="Sandogh_DBModel.UserSimpleView" Width="1.5" PointX="2.75" PointY="6.375" />
+        <EntityTypeShape EntityType="Sandogh_DBModel.UserFullView" Width="1.5" PointX="4.75" PointY="7.375" />
+        <AssociationConnector Association="Sandogh_DBModel.UsersJob_PK" />
+        <AssociationConnector Association="Sandogh_DBModel.FK_PersonPhone_Phone" />
+        <AssociationConnector Association="Sandogh_DBModel.FK_Users_People" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

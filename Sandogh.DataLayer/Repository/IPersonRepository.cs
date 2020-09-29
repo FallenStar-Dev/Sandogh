@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sandogh.App
+namespace Sandogh.DataLayer.Repository
 {
-    public class Global_variable
+    interface IPersonRepository<T> : IGenericRepository<T> where T : Person
     {
-        public static UserFullView ActiveUser;
+
     }
 }

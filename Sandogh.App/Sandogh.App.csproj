@@ -42,7 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,13 +52,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Sandogh.App.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icons8_mac_client.ico</ApplicationIcon>
+    <ApplicationIcon>Icons\icons8_mac_client.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -82,6 +82,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -105,20 +107,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Convertor\ActivityConvertor.cs" />
+    <Compile Include="Convertor\GenderConvertor.cs" />
     <Compile Include="Global_variable.cs" />
-    <Compile Include="W_Transaction.xaml.cs">
-      <DependentUpon>W_Transaction.xaml</DependentUpon>
+    <Compile Include="SetConnectionWindow.xaml.cs">
+      <DependentUpon>SetConnectionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="W_User.xaml.cs">
-      <DependentUpon>W_User.xaml</DependentUpon>
+    <Compile Include="TransactionsWindow.xaml.cs">
+      <DependentUpon>TransactionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersWindow.xaml.cs">
+      <DependentUpon>UsersWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="W_Login.xaml.cs">
-      <DependentUpon>W_Login.xaml</DependentUpon>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="W_Main.xaml.cs">
-      <DependentUpon>W_Main.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -183,6 +190,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sandogh.Bussiness\Sandogh.Bussiness.csproj">
+      <Project>{f4af24ce-225d-4ae0-97fa-bf96d952a7eb}</Project>
+      <Name>Sandogh.Bussiness</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sandogh.DataLayer\Sandogh.DataLayer.csproj">
       <Project>{a8e7f5d5-f94c-4a05-baef-9a1882e92e0f}</Project>
       <Name>Sandogh.DataLayer</Name>
@@ -192,22 +203,30 @@
     <Resource Include="Images\LoginLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="SplashEnterance.png" />
+    <SplashScreen Include="Images\SplashEnterance.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="W_Login.xaml">
+    <Page Include="MyRes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="W_Main.xaml">
+    <Page Include="SetConnectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="W_Transaction.xaml">
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="W_User.xaml">
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransactionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,7 +244,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons8_mac_client.ico" />
+    <Resource Include="Icons\icons8_mac_client.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DataBaseLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MyDic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

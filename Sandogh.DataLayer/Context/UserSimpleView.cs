@@ -12,21 +12,15 @@ namespace Sandogh.DataLayer.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Users
+    public partial class UserSimpleView
     {
         public int UserID { get; set; }
-        public string UserFirstName { get; set; }
-        public string UserLastName { get; set; }
+        public string Name { get; set; }
+        public string Family { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
-        public Nullable<bool> Gender { get; set; }
-        public Nullable<bool> Activity { get; set; }
-        public string UserPhone { get; set; }
-        public byte[] UserImage { get; set; }
-        public string CreateDate { get; set; }
-        public int UsersJobID { get; set; }
-    
-        public virtual Tbl_Jobs Tbl_Jobs { get; set; }
+        public bool Activity { get; set; }
+        public string JobName { get; set; }
+        public string TActivity { get; set; }
     }
 }

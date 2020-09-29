@@ -17,9 +17,9 @@ namespace Sandogh.App
     /// <summary>
     /// Interaction logic for W_Transaction.xaml
     /// </summary>
-    public partial class W_Transaction : Window,IDisposable
+    public partial class TransactionWindow : Window,IDisposable
     {
-        public W_Transaction()
+        public TransactionWindow()
         {
             InitializeComponent();
         }

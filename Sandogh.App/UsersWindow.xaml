@@ -1,0 +1,45 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Convert="clr-namespace:Sandogh.App.Convertor"
+        xmlns:local="clr-namespace:Sandogh.App"
+        xmlns:Context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.UsersWindow"
+        mc:Ignorable="d"
+        Title="فرم کاربران" Height="450" Width="800" WindowStartupLocation="CenterOwner" >
+    <Window.Resources>
+        <Convert:GenderConvertor x:Key="gc"/>
+        <Convert:ActivityConvertor x:Key="ac"/>
+
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <Button x:Name="BtnRefresh" Content="بروزرسانی" Width="100" Height="50" Click="BtnRefresh_Click"/>
+            <Button Content="Button" Click="Button_Click"/>
+            <DataGrid x:Name="DgvUsers" AutoGenerateColumns="False" IsReadOnly="True" RowDetailsVisibilityMode="Visible" 
+                      HeadersVisibility="Column" SelectionUnit="FullRow"
+                      IsTextSearchEnabled="True" FlowDirection="RightToLeft" SelectionMode="Single" 
+                      FontFamily="/Sandogh.App;component/Font/#Lalezar" >
+                <DataGrid.Resources>
+                    <ResourceDictionary Source="MyRes.xaml"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="کد کاربر" Visibility="Collapsed" Binding="{Binding UserID}"/>
+                    <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCode}" Visibility="Collapsed" Width=".3*"/>
+                    <DataGridTextColumn Header="جنسیت" Binding="{Binding Gender, Converter={StaticResource gc}}" Width=".2*" />
+                    <DataGridTextColumn Header="اسم" Binding="{Binding Name}" Width=".25*" />
+                    <DataGridTextColumn Header="فامیل" Binding="{Binding Family}" Width=".25*" />
+                    <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName}" Width=".2*"/>
+                    <DataGridTextColumn Header="رمز عبور" Binding="{Binding Password}" Width=".2*"/>
+                    <DataGridTextColumn Header="موبایل" Binding="{Binding PhoneNumber}" Width=".3*"/>
+                    <DataGridTextColumn Header="فعالیت" Binding="{Binding Activity,Converter={StaticResource ac}}" Width=".2*"/>
+                    <DataGridTextColumn Header="کد شغل" Visibility="Collapsed" Binding="{Binding JobID}" />
+                    <DataGridTextColumn Header="سمت" Binding="{Binding JobName}" Width=".2*"/>
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

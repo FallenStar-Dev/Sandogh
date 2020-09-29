@@ -2,7 +2,7 @@
 using MaterialDesignThemes.Wpf;
 
 using Sandogh.DataLayer.Context;
-
+using Sandogh.App;
 using System;
 using System.Threading;
 using System.Windows;
@@ -22,27 +22,23 @@ namespace Sandogh.App
 
         
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Thread thread = new Thread(this.GetUsers);
-
-        }
+       
 
         private void MainWindow_Initialized(object sender, EventArgs e)
         {
-            this.Dispatcher.InvokeAsync(() =>
+            /*this.Dispatcher.InvokeAsync(() =>
             {
                 LoginWindow L = new LoginWindow();
                 {
                     L.ShowDialog();
                     Visibility = Visibility.Visible;
                 }
-            });
+            });*/
         }
 
         private void BtnUsers_Click(object sender, RoutedEventArgs e)
         {
-            using (Window_User W_user = new Window_User())
+            using (UsersWindow W_user = new UsersWindow())
             {
                 W_user.Owner = this;
                 W_user.ShowDialog();
@@ -52,12 +48,18 @@ namespace Sandogh.App
 
         private void BtnTransaction_Click(object sender, RoutedEventArgs e)
         {
-            using (W_Transaction W_tranaction = new W_Transaction())
+            using (TransactionWindow W_tranaction = new TransactionWindow())
             {
                 W_tranaction.Owner = this;
                 W_tranaction.ShowDialog();
                 W_tranaction.Dispose();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+        //    var a=unitOfWork.UserRepository.GetUserWithJobDetailsByID(2);
         }
     }
 }

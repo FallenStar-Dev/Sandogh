@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sandogh.App.Properties
+namespace Sandogh.Bussiness.Properties
 {
 
 

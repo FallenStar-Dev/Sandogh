@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Sandogh.App"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.MainWindow"
         mc:Ignorable="d"
-        Title="فرم اصلی" Localization.Attributes="fa-IR"  Visibility="Visible" Height="450" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" Loaded="MainWindow_Loaded" Initialized="MainWindow_Initialized">
+        Title="فرم اصلی" Localization.Attributes="fa-IR" Height="450" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
     <Grid>
 
         <StackPanel>
@@ -22,6 +22,8 @@
                 
 
             </StackPanel>
+            <CalendarButton Content="CalendarButton"/>
+            <Button Content="Button" d:LayoutOverrides="Height" Click="Button_Click"/>
         </StackPanel>
 
 

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utility.PopUp
+namespace Sandogh.DataLayer.Services
 {
-   
+    public class PersonRepository
+    {
+    }
 }
