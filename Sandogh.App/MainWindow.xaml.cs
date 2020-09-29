@@ -61,5 +61,10 @@ namespace Sandogh.App
             UnitOfWork unitOfWork = new UnitOfWork();
         //    var a=unitOfWork.UserRepository.GetUserWithJobDetailsByID(2);
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

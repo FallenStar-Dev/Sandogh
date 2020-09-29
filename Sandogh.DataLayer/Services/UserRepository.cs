@@ -27,6 +27,11 @@ namespace Sandogh.DataLayer.Services
             return _db.UserSimpleViews.ToList();
         }
 
+        public UserFullView GetUserFullDetailsByID(int id)
+        {
+            return _db.UserFullViews.Where(c=>c.UserID==id).SingleOrDefault();
+        }
+
         /* public IList<Vw_UsersJob> GetAllUserWithJobDetails()
          {
              return _db.Vw_UsersJob.ToList();
@@ -59,9 +64,6 @@ namespace Sandogh.DataLayer.Services
             return _db.Users.Find(id);
         }
 
-        UserFullView IUserRepository<User>.GetUserFullDetailsByID(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

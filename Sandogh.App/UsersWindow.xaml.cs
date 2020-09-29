@@ -54,6 +54,10 @@ namespace Sandogh.App
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             UnitOfWork a = new UnitOfWork();
+            UserSimpleView selectedUserRow = (UserSimpleView)DgvUsers.SelectedItem;
+            int id = selectedUserRow.UserID;
+            AddOrEditUserWindow window = new AddOrEditUserWindow(id);
+            window.ShowDialog();
             /*a.UserGenericRepository.Insert(new User()
             {
                 UserName = "c",
@@ -65,7 +69,7 @@ namespace Sandogh.App
                 UsersJobID=3,
                 
             }) ;  */
-            
+
 
             // a.UserGenericRepository.Insert(new Tbl_Users()
             /*a.UserGenericRepository.Delete(new Tbl_Users() {
@@ -77,7 +81,7 @@ namespace Sandogh.App
                 UserName = "cccc",
                 UsersJobID = 1
             }) ;    */
-             
+
             // a.Save();
             DgvUsers.ItemsSource = a.UserGenericRepository.GetAllUserSimpleDetails();
             //List<Tbl_Users>  tbls=a.UserGenericRepository.GetAll().ToList();

@@ -103,6 +103,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddOrEditUserWindow.xaml.cs">
+      <DependentUpon>AddOrEditUserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -206,6 +209,10 @@
     <SplashScreen Include="Images\SplashEnterance.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AddOrEditUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyRes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
