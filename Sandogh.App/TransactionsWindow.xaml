@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandogh.Bussiness"
         mc:Ignorable="d"
-        Title="تراکنش ها" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+        Title="تراکنش ها" Height="450" Width="800" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
     <Grid>
-        
+        <DataGrid>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="الکی" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

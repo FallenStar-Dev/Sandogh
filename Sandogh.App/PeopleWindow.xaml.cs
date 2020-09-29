@@ -17,20 +17,20 @@ using System.Windows.Shapes;
 namespace Sandogh.App
 {
     /// <summary>
-    /// Interaction logic for W_Transaction.xaml
+    /// Interaction logic for PeopleWindow.xaml
     /// </summary>
-    public partial class TransactionWindow : Window,IDisposable
+    public partial class PeopleWindow : Window
     {
-        public TransactionWindow()
+        public PeopleWindow()
         {
             InitializeComponent();
         }
 
-        public void Dispose() => this.Close();
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            UnitOfWork a = new UnitOfWork();
             
+              DgvPeoples.ItemsSource = a.PersonRepository.GetAll();
         }
     }
 }
