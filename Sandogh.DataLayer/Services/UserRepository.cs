@@ -27,9 +27,10 @@ namespace Sandogh.DataLayer.Services
             return _db.UserSimpleViews.ToList();
         }
 
+        
         public UserFullView GetUserFullDetailsByID(int id)
         {
-            return _db.UserFullViews.Where(c => c.UserID == id).SingleOrDefault();
+            return _db.UserFullViews.SingleOrDefault(c => c.UserID == id);
         }
 
 
@@ -41,8 +42,7 @@ namespace Sandogh.DataLayer.Services
 
         public UserFullView Login(string username, string password)
         {
-            return _db.UserFullViews.Where
-                (c => c.UserName.Equals(username) && c.Password.Equals(password)).SingleOrDefault();
+            return _db.UserFullViews.SingleOrDefault(c => c.UserName.Equals(username) && c.Password.Equals(password));
         }
 
         IEnumerable<User> IGenericRepository<User>.GetAll()

@@ -1,18 +1,7 @@
-﻿using Sandogh.DataLayer.Context;
-
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Sandogh.DataLayer.Context;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Sandogh.App
 {
@@ -21,19 +10,35 @@ namespace Sandogh.App
     /// </summary>
     public partial class AddOrEditUserWindow : Window
     {
-        UserFullView userFullView;
+        private UserFullView userFullView;
         public AddOrEditUserWindow(int id)
         {
             InitializeComponent();
-            TxtID.Text = id.ToString();
-            UnitOfWork unitOfWork = new UnitOfWork();
+            TxtId.Text = id.ToString();
+            var unitOfWork = new UnitOfWork();
             userFullView = unitOfWork.UserGenericRepository.GetUserFullDetailsByID(id);
             FillForm();
         }
         private void FillForm()
         {
+            var unitOfWork = new UnitOfWork();
             StkPanel.DataContext = userFullView;
-           // TxtName.Text = userFullView.Name;
+
+
+            //CboJob.ItemsSource = a;
+            CboJob.ItemsSource = unitOfWork.JobGenericRepository.GetAll().
+                ToDictionary(c => (c.JobID), d => d.JobName);    
+            CboJob.DisplayMemberPath = "Value";
+            CboJob.SelectedValuePath = "Key";
+            CboJob.SelectedValue = userFullView.JobID;
+            GrdPhone.ItemsSource = unitOfWork.UserGenericRepository.GetPhones(userFullView.PersonID).ToList();
+
+            // TxtName.Text = userFullView.Name;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(CboJob.SelectedValue.ToString());
         }
     }
 }

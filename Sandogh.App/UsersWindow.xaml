@@ -19,10 +19,12 @@
             <RowDefinition Height="336*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button x:Name="BtnRefresh" Content="بروزرسانی" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Click="BtnRefresh_Click"/>
-            <Button Content="Button" Click="Button_Click"/>
-        </StackPanel>
+        <DockPanel Grid.Row="0" HorizontalAlignment="Right">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button x:Name="BtnRefresh" Content="بروزرسانی" Click="BtnRefresh_Click"/>
+                <Button Content="اضافه یا ویرایش" Click="Button_Click"/>
+            </StackPanel>
+        </DockPanel>
         <Grid Grid.Row="1">
             <DataGrid x:Name="DgvUsers" AutoGenerateColumns="False" IsReadOnly="True" RowDetailsVisibilityMode="Visible" 
                       HeadersVisibility="Column" SelectionUnit="FullRow" Margin="10"

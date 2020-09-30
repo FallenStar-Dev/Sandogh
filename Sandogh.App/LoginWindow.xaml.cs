@@ -5,10 +5,7 @@ using Sandogh.Bussiness;
 using Sandogh.DataLayer.Context;
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data.Entity.Core;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;

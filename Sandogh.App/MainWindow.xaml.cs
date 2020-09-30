@@ -1,12 +1,6 @@
-﻿
-using MaterialDesignThemes.Wpf;
-
-using Sandogh.DataLayer.Context;
-using Sandogh.App;
+﻿using Sandogh.DataLayer.Context;
 using System;
-using System.Threading;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Sandogh.App
 {

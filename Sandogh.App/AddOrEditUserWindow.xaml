@@ -4,13 +4,29 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sandogh.App"
-        xmlns:Context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.AddOrEditUserWindow"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+       xmlns:context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer"
+        x:Class="Sandogh.App.AddOrEditUserWindow"
         mc:Ignorable="d"
         Title="AddOrEditUserWindow" Height="450" Width="800">
+    <Window.Resources>
+        
+    </Window.Resources>
     <Grid>
-        <TextBlock x:Name="TxtID" HorizontalAlignment="Right" Margin="0,351,28,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="44" Width="175"/>
-        <StackPanel x:Name="StkPanel" Orientation="Horizontal">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="185*"/>
+            <ColumnDefinition Width="607*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock x:Name="TxtId" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="44" Width="175"/>
+
+            <Button Content="save" Click="Button_Click"/>
+            <DataGrid Name="GrdPhone" Height="100">
+                
+            </DataGrid>
+
+        </StackPanel>
+        <StackPanel x:Name="StkPanel" Orientation="Horizontal" Grid.Column="1">
             <StackPanel.Resources>
                 <Style BasedOn="{StaticResource MaterialDesignTextBox}" TargetType="{x:Type TextBox}">
                     <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -25,20 +41,29 @@
                 <TextBox x:Name="TxtFamily" Text="{Binding Family}" materialDesign:HintAssist.Hint="فامیل را وارد کنید"/>
                 <TextBox  Text="{Binding UserName}" materialDesign:HintAssist.Hint="نام کاربری را وارد کنید"/>
                 <TextBox  Text="{Binding Password}" materialDesign:HintAssist.Hint="رمزعبور را وارد کنید"/>
-                <TextBox  Text="{Binding TGender}" materialDesign:HintAssist.Hint="جنسیت را وارد کنید"/>
                 <TextBox  Text="{Binding Email}" materialDesign:HintAssist.Hint="ایمیل را وارد کنید"/>
-                <TextBox  Text="{Binding TActivity}" materialDesign:HintAssist.Hint="فعالیت را وارد کنید"/>
-                <TextBox  Text="{Binding JobName}" materialDesign:HintAssist.Hint="سمت را وارد کنید"/>
                 <TextBox  Text="{Binding PhoneNumber}" materialDesign:HintAssist.Hint="موبایل را وارد کنید"/>
 
             </StackPanel>
-            <StackPanel Width="300">
-                <TextBlock Text="جنسیت" HorizontalAlignment="Right"/>
-                <ComboBox SelectedIndex="{Binding Gender}" materialDesign:HintAssist.Hint="جنسیت" Text="جنسیت را انتخاب کنید">
+            <StackPanel Grid.Column="1" Width="150" Margin="5" FlowDirection="RightToLeft">
+                <GroupBox Header="جنسیت">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" FlowDirection="RightToLeft">
+                        <RadioButton Content="زن" IsChecked="True" />
+                        <RadioButton Content="مرد" IsChecked="{Binding Gender}" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="فعال بودن">
+                    <ToggleButton IsChecked="{Binding Activity}" />
+                </GroupBox>
+                <GroupBox Header="سمت">
+                    <ComboBox Name="CboJob" HorizontalContentAlignment="Center"></ComboBox>
+                </GroupBox>
+                <!--<ComboBox SelectedIndex="{Binding Gender}" HorizontalContentAlignment="Right">
                     <ComboBoxItem Tag="0" Content="زن"/>
                     <ComboBoxItem Tag="1" Content="مرد" />
-                </ComboBox>
+                </ComboBox>-->
             </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>

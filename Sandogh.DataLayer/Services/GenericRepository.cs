@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Sandogh.DataLayer.Services
 {
-    public abstract class GenericRepository<T> : IGenericRepository<T>  where T:class
+    public class GenericRepository<T> : IGenericRepository<T>  where T:class
     {
         private readonly Sandogh_DBEntities _db;
         private readonly DbSet<T> _dbSet;
@@ -68,5 +68,11 @@ namespace Sandogh.DataLayer.Services
 
             return query.ToList();
         }
+
+        public IEnumerable<Phone> GetPhones(int id)
+        {
+                var a=_db.Phones.Where(c => c.PersonID == id).ToList();
+                return a;
+        } 
     }
 }

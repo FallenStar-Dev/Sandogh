@@ -15,8 +15,11 @@ namespace Sandogh.DataLayer.Context
     public class UnitOfWork : IDisposable
     {
         private readonly Sandogh_DBEntities db = new Sandogh_DBEntities(GlobalVariables.MainConnectionString);
-        private IUserRepository<User> _UserGenericRepository;
-        public IUserRepository<User> UserGenericRepository=> _UserGenericRepository ??= new UserRepository(db);
+        private IUserRepository<User> _userGenericRepository;
+        public IUserRepository<User> UserGenericRepository=> _userGenericRepository ??= new UserRepository(db);
+       
+        private IGenericRepository<Job> _jobGenericRepository;
+        public IGenericRepository<Job> JobGenericRepository => _jobGenericRepository ??= new GenericRepository<Job>(db);
        /* private IUserRepository _UserRepository;
         public IUserRepository UserRepository => _UserRepository ??= new UserRepository(db); */
         public void Dispose() => db.Dispose();

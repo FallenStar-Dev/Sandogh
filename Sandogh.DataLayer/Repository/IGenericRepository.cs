@@ -14,6 +14,7 @@ namespace Sandogh.DataLayer.Repository
     {
         IEnumerable<T> Get(Expression<Func<T, bool>> whereParameter = null);
         IEnumerable<T> GetAll();
+        IEnumerable<Phone> GetPhones(int id);
         T GetById(object id);
         void Insert(T entity);
         void Update(T entity);
