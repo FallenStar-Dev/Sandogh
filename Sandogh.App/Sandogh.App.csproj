@@ -201,6 +201,10 @@
       <Project>{a8e7f5d5-f94c-4a05-baef-9a1882e92e0f}</Project>
       <Name>Sandogh.DataLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3153027a-2ac7-47a6-b1b0-ca065df0abe3}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\LoginLogo.png" />

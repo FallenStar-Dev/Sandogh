@@ -8,9 +8,9 @@
        xmlns:context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer"
         x:Class="Sandogh.App.AddOrEditUserWindow"
         mc:Ignorable="d"
-        Title="AddOrEditUserWindow" Height="450" Width="800">
+        Title="AddOrEditUserWindow" Height="450" Width="800" ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
     <Window.Resources>
-        
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,11 +18,15 @@
             <ColumnDefinition Width="607*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TextBlock x:Name="TxtId" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="44" Width="175"/>
+            <TextBlock x:Name="TxtId" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="33" Width="175" Margin="5,0"/>
 
-            <Button Content="save" Click="Button_Click"/>
-            <DataGrid Name="GrdPhone" Height="100">
-                
+            <Button Content="save" Click="Button_Click" Height="38"/>
+            <DataGrid Name="GrdPhone" Height="185" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FFF50000" HeadersVisibility="Column" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="آیدی" Binding="{Binding PhoneID}" Visibility="Collapsed" />
+                    <DataGridTextColumn Header="شماره تماس" Binding="{Binding PhoneNumber}" Width="*"/>
+                    <DataGridTextColumn Header="شماره اصلی" Binding="{Binding IsDefault}"/>
+                </DataGrid.Columns>
             </DataGrid>
 
         </StackPanel>

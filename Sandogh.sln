@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandogh.DataLayer", "Sandog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandogh.Bussiness", "Sandogh.Bussiness\Sandogh.Bussiness.csproj", "{F4AF24CE-225D-4AE0-97FA-BF96D952A7EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{3153027A-2AC7-47A6-B1B0-CA065DF0ABE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F4AF24CE-225D-4AE0-97FA-BF96D952A7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4AF24CE-225D-4AE0-97FA-BF96D952A7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4AF24CE-225D-4AE0-97FA-BF96D952A7EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3153027A-2AC7-47A6-B1B0-CA065DF0ABE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3153027A-2AC7-47A6-B1B0-CA065DF0ABE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3153027A-2AC7-47A6-B1B0-CA065DF0ABE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3153027A-2AC7-47A6-B1B0-CA065DF0ABE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

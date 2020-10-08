@@ -7,6 +7,7 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Core.EntityClient;
 using System.Windows;
 using System.Windows.Input;
+using Sandogh.Utility.Cryptography;
 
 namespace Sandogh.App
 {
@@ -54,17 +55,26 @@ namespace Sandogh.App
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+
             string EntityConnectionString = BuildConnectionString(ProviderConnectionString());
 
             if (IsServerConnected(EntityConnectionString))
+            {
                 using (RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(@"software\Sandogh"))
                 {
-                    registryKey.SetValue("ConnectionString", EntityConnectionString);
+                    using (AES aes = new AES())
+                    {
+                        string EnryptedConnectionString = aes.Encrypt(EntityConnectionString, "password", 256);
+                        registryKey.SetValue("ConnectionString", EnryptedConnectionString);
+                    }
+              
                     GlobalVariables.MainConnectionString = EntityConnectionString;
                     DialogResult = true;
                     registryKey.Close();
                     registryKey.Dispose();
                 }
+            }
+
             else
                 TxtsResetter();
         }

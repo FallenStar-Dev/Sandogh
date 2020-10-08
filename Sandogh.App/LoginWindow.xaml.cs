@@ -3,6 +3,7 @@ using Microsoft.Win32;
 
 using Sandogh.Bussiness;
 using Sandogh.DataLayer.Context;
+using Sandogh.Utility.Cryptography;
 
 using System;
 using System.Data.Entity.Core;
@@ -36,7 +37,7 @@ namespace Sandogh.App
                     {
                         //  Sp_Login_Result user = db.UserRepository.Login(TxtUsername.Text, TxtPassword.Password);
                         UserFullView user = db.UserGenericRepository.Login(TxtUsername.Text, TxtPassword.Password);
-                        
+
                         if (user is not null)
                         {
                             if (user.TActivity.Equals("فعال"))
@@ -106,15 +107,19 @@ namespace Sandogh.App
 
         private void BtnOpenConnectionWindow_Click(object sender, RoutedEventArgs e)
         {
-            using (SetConnectionWindow connectionWindow = new SetConnectionWindow() { Owner=this})
+            using (SetConnectionWindow connectionWindow = new SetConnectionWindow() { Owner = this })
             {
                 if (connectionWindow.ShowDialog().Equals(true))
                 {
                     using RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
-                    GlobalVariables.MainConnectionString = registryKey.GetValue("ConnectionString").ToString();
+                    using (AES aes =new AES())
+                    {                        
+                        GlobalVariables.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(),"password",256);               
+                    }
                     registryKey.Close();
                     registryKey.Dispose();
-                }               
+
+                }
                 connectionWindow.Dispose();
             }
         }
@@ -125,7 +130,11 @@ namespace Sandogh.App
             {
                 if (registryKey.GetValueNames().Contains("ConnectionString"))
                 {
-                    GlobalVariables.MainConnectionString = registryKey.GetValue("ConnectionString").ToString();
+                    using (AES aes = new AES())
+                    {                        
+                        GlobalVariables.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(), "password", 256);
+                    }
+
                     registryKey.Close();
                     registryKey.Dispose();
                     return true;

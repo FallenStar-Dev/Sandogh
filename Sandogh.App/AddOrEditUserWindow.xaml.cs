@@ -31,7 +31,7 @@ namespace Sandogh.App
             CboJob.DisplayMemberPath = "Value";
             CboJob.SelectedValuePath = "Key";
             CboJob.SelectedValue = userFullView.JobID;
-            GrdPhone.ItemsSource = unitOfWork.UserGenericRepository.GetPhones(userFullView.PersonID).ToList();
+            GrdPhone.ItemsSource = unitOfWork.UserGenericRepository.GetPhones(userFullView.PersonID).Select(c=>new { c.PhoneID, c.PhoneNumber,c.IsDefault}).ToList();
 
             // TxtName.Text = userFullView.Name;
         }
@@ -40,5 +40,7 @@ namespace Sandogh.App
         {
             MessageBox.Show(CboJob.SelectedValue.ToString());
         }
+
+      
     }
 }

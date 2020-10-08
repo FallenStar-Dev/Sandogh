@@ -4,8 +4,10 @@
     
     <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
         <Setter Property="HorizontalContentAlignment" Value="center"/>
+        <Setter Property="FontFamily" Value="/Sandogh.App;component/Font/#Lalezar"/>
     </Style>
     <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="/Sandogh.App;component/Font/#Lalezar"/>
     </Style>
 </ResourceDictionary>
