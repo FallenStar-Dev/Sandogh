@@ -62,7 +62,7 @@ namespace Sandogh.App
             {
                 using (RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(@"software\Sandogh"))
                 {
-                    using (AES aes = new AES())
+                    using (Aes aes = new Aes())
                     {
                         string EnryptedConnectionString = aes.Encrypt(EntityConnectionString, "password", 256);
                         registryKey.SetValue("ConnectionString", EnryptedConnectionString);

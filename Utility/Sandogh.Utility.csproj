@@ -7,8 +7,8 @@
     <ProjectGuid>{3153027A-2AC7-47A6-B1B0-CA065DF0ABE3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Utility</RootNamespace>
-    <AssemblyName>Utility</AssemblyName>
+    <RootNamespace>Sandogh.Utility</RootNamespace>
+    <AssemblyName>Sandogh.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

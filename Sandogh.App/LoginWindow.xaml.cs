@@ -112,7 +112,7 @@ namespace Sandogh.App
                 if (connectionWindow.ShowDialog().Equals(true))
                 {
                     using RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
-                    using (AES aes =new AES())
+                    using (Aes aes =new Aes())
                     {                        
                         GlobalVariables.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(),"password",256);               
                     }
@@ -130,7 +130,7 @@ namespace Sandogh.App
             {
                 if (registryKey.GetValueNames().Contains("ConnectionString"))
                 {
-                    using (AES aes = new AES())
+                    using (Aes aes = new Aes())
                     {                        
                         GlobalVariables.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(), "password", 256);
                     }

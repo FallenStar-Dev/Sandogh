@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 
 namespace Sandogh.App
 {
@@ -9,6 +10,7 @@ namespace Sandogh.App
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            Thread.Sleep(2000);
             MainWindow main = new MainWindow();
             using (LoginWindow login = new LoginWindow())
             {

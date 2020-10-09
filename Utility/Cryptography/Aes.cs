@@ -4,21 +4,21 @@ using System.Security.Cryptography;
 
 namespace Sandogh.Utility.Cryptography
 {
-    public class AES :IDisposable
+    public class Aes :IDisposable
     {
-        private bool disposedValue;
+        private bool _disposedValue;
 
-        public AES()
+        public Aes()
         {
         }
 
-        private byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV)
+        private byte[] Encrypt(byte[] clearData, byte[] key, byte[] IV)
         {
 
             MemoryStream ms = new MemoryStream();
 
             Rijndael alg = Rijndael.Create();
-            alg.Key = Key;
+            alg.Key = key;
 
             alg.IV = IV;
             CryptoStream cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
@@ -30,33 +30,33 @@ namespace Sandogh.Utility.Cryptography
         }
 
 
-        public string Encrypt(string Data, string Password, int Bits)
+        public string Encrypt(string data, string password, int bits)
         {
 
-            byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(Data);
+            byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(data);
 
-            PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password,
+            PasswordDeriveBytes pdb = new PasswordDeriveBytes(password,
 
                 new byte[] { 0x00, 0x01, 0x02, 0x1C, 0x1D, 0x1E, 0x03, 0x04, 0x05, 0x0F, 0x20, 0x21, 0xAD, 0xAF, 0xA4 });
 
-            if (Bits == 128)
+            if (bits == 128)
             {
                 byte[] encryptedData = Encrypt(clearBytes, pdb.GetBytes(16), pdb.GetBytes(16));
                 return Convert.ToBase64String(encryptedData);
             }
-            else if (Bits == 192)
+            else if (bits == 192)
             {
                 byte[] encryptedData = Encrypt(clearBytes, pdb.GetBytes(24), pdb.GetBytes(16));
                 return Convert.ToBase64String(encryptedData);
             }
-            else if (Bits == 256)
+            else if (bits == 256)
             {
                 byte[] encryptedData = Encrypt(clearBytes, pdb.GetBytes(32), pdb.GetBytes(16));
                 return Convert.ToBase64String(encryptedData);
             }
             else
             {
-                return string.Concat(Bits);
+                return string.Concat(bits);
             }
         }
 
@@ -109,7 +109,7 @@ namespace Sandogh.Utility.Cryptography
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -118,7 +118,7 @@ namespace Sandogh.Utility.Cryptography
 
                 // TODO: free unmanaged resources (unmanaged objects) and override finalizer
                 // TODO: set large fields to null
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 
