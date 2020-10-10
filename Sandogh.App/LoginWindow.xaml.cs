@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 
 using Sandogh.Bussiness;
+using Sandogh.DataLayer;
 using Sandogh.DataLayer.Context;
 using Sandogh.Utility.Cryptography;
 
@@ -10,7 +11,6 @@ using System.Data.Entity.Core;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Sandogh.DataLayer;
 
 namespace Sandogh.App
 {
@@ -32,7 +32,7 @@ namespace Sandogh.App
 
         private void BtnLogin_click(object sender, RoutedEventArgs e)
         {
-            if (RegistryConnectionChecker())
+            if (RegistryConnectionStringChecker())
             {
                 try
                 {
@@ -114,28 +114,18 @@ namespace Sandogh.App
         {
             using var connectionWindow = new SetConnectionWindow() { Owner = this };
             if (connectionWindow.ShowDialog().Equals(true))
-            {
-                using var registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
-                using var aes = new Aes();
-                DataBaseConnection.MainConnectionString = aes.Decrypt(registryKey?.GetValue("ConnectionString").ToString(), "password", 256);
-                registryKey?.Close();
-                registryKey?.Dispose();
-                aes.Dispose();
-            }
+
+                DataBaseConnection.MainConnectionString = Aes.Decrypt(RegistryOperator.GetKey("ConnectionString"), HardwareInfo.GetProcessorId(), 256);
+
             connectionWindow.Dispose();
             connectionWindow.Close();
         }
 
-        private bool RegistryConnectionChecker()
+        private bool RegistryConnectionStringChecker()
         {
-            using var registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
-            if (registryKey != null && registryKey.GetValueNames().Contains("ConnectionString").Equals(true))
+            if (RegistryOperator.IsKeyExist("ConnectionString"))
             {
-                using var aes = new Aes();
-                DataBaseConnection.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(), "password", 256);
-                aes.Dispose();
-                registryKey.Close();
-                registryKey.Dispose();
+                DataBaseConnection.MainConnectionString = Aes.Decrypt(RegistryOperator.GetKey("ConnectionString"), HardwareInfo.GetProcessorId(), 256);
                 return true;
             }
 
@@ -146,7 +136,7 @@ namespace Sandogh.App
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            RegistryConnectionChecker();
+            RegistryConnectionStringChecker();
             TxtsResetter();
         }
 

@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-
-using Sandogh.Bussiness;
+﻿using Sandogh.Bussiness;
 
 using System;
 using System.Data.Entity.Core;
@@ -17,15 +15,13 @@ namespace Sandogh.App
     /// </summary>
     public partial class SetConnectionWindow : Window, IDisposable
     {
+        private bool _disposedValue;
+
         public SetConnectionWindow()
         {
             InitializeComponent();
         }
 
-        public void Dispose()
-        {
-            Close();
-        }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -56,26 +52,15 @@ namespace Sandogh.App
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            var entityConnectionString = BuildConnectionString(ProviderConnectionString());
 
-            string EntityConnectionString = BuildConnectionString(ProviderConnectionString());
-
-            if (IsServerConnected(EntityConnectionString))
+            if (IsServerConnected(entityConnectionString))
             {
-                using (var registryKey = Registry.CurrentUser.CreateSubKey(@"software\Sandogh"))
-                {
-                    using (var aes = new Aes())
-                    {
-                        string encryptedConnectionString = aes.Encrypt(EntityConnectionString, "password", 256);
-                        registryKey?.SetValue("ConnectionString", encryptedConnectionString);
-                    }
-              
-                    DataBaseConnection.MainConnectionString = EntityConnectionString;
-                    DialogResult = true;
-                    registryKey?.Close();
-                    registryKey?.Dispose();
-                }
+                var encryptedConnectionString = Aes.Encrypt(entityConnectionString, HardwareInfo.GetProcessorId(), 256);
+                RegistryOperator.CreateKey("ConnectionString",encryptedConnectionString);
+                DataBaseConnection.MainConnectionString = entityConnectionString;
+                DialogResult = true;
             }
-
             else
                 TxtsResetter();
         }
@@ -117,7 +102,7 @@ namespace Sandogh.App
 
         private static string BuildConnectionString(string dynamicProviderConnectionString)
         {
-            EntityConnectionStringBuilder entityConnectionString = new EntityConnectionStringBuilder()
+            var entityConnectionString = new EntityConnectionStringBuilder()
             {
                 Provider = "System.Data.SqlClient",
                 ProviderConnectionString = dynamicProviderConnectionString,
@@ -129,5 +114,35 @@ namespace Sandogh.App
 
         private void Window_Loaded(object sender, RoutedEventArgs e) => TxtIpAddress.Focus();
 
+        #region Disposing
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects)
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                _disposedValue = true;
+            }
+        }
+
+        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
+        // ~SetConnectionWindow()
+        // {
+        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        //     Dispose(disposing: false);
+        // }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion Disposing
     }
 }

@@ -48,6 +48,7 @@
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="HardwareInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistryOperate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SystemInfo\" />

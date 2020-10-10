@@ -1,139 +1,96 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Sandogh.Utility.Cryptography
 {
-    public class Aes :IDisposable
+    public static class Aes
     {
-        private bool _disposedValue;
-
-        public Aes()
+        private static byte[] Encrypt(byte[] clearData, byte[] key, byte[] ivBytes)
         {
-        }
-
-        private byte[] Encrypt(byte[] clearData, byte[] key, byte[] IV)
-        {
-
-            MemoryStream ms = new MemoryStream();
-
-            Rijndael alg = Rijndael.Create();
+            using var ms = new MemoryStream();
+            var alg = Rijndael.Create();
             alg.Key = key;
-
-            alg.IV = IV;
-            CryptoStream cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
-
+            alg.IV = ivBytes;
+            var cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
             cs.Write(clearData, 0, clearData.Length);
             cs.Close();
-            byte[] encryptedData = ms.ToArray();
+            var encryptedData = ms.ToArray();
+            alg.Dispose();
+            cs.Dispose();
+            ms.Dispose();
             return encryptedData;
         }
 
 
-        public string Encrypt(string data, string password, int bits)
+        public static string Encrypt(string data, string password, int bits)
         {
 
-            byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(data);
+            byte[] clearBytes = Encoding.Unicode.GetBytes(data);
 
             PasswordDeriveBytes pdb = new PasswordDeriveBytes(password,
 
                 new byte[] { 0x00, 0x01, 0x02, 0x1C, 0x1D, 0x1E, 0x03, 0x04, 0x05, 0x0F, 0x20, 0x21, 0xAD, 0xAF, 0xA4 });
-
-            if (bits == 128)
+            byte[] encryptedData;
+            switch (bits)
             {
-                byte[] encryptedData = Encrypt(clearBytes, pdb.GetBytes(16), pdb.GetBytes(16));
-                return Convert.ToBase64String(encryptedData);
+                case (128):
+                    encryptedData = Encrypt(clearBytes, pdb.GetBytes(16), pdb.GetBytes(16));
+                    break;
+                case (192):
+                    encryptedData = Encrypt(clearBytes, pdb.GetBytes(24), pdb.GetBytes(16));
+                    break;
+                case (256):
+                    encryptedData = Encrypt(clearBytes, pdb.GetBytes(32), pdb.GetBytes(16));
+                    break;
+                default:
+                    return string.Concat(bits);
             }
-            else if (bits == 192)
-            {
-                byte[] encryptedData = Encrypt(clearBytes, pdb.GetBytes(24), pdb.GetBytes(16));
-                return Convert.ToBase64String(encryptedData);
-            }
-            else if (bits == 256)
-            {
-                byte[] encryptedData = Encrypt(clearBytes, pdb.GetBytes(32), pdb.GetBytes(16));
-                return Convert.ToBase64String(encryptedData);
-            }
-            else
-            {
-                return string.Concat(bits);
-            }
+            return Convert.ToBase64String(encryptedData);
         }
 
 
-        private byte[] Decrypt(byte[] cipherData, byte[] Key, byte[] iv)
+        private static byte[] Decrypt(byte[] cipherData, byte[] key, byte[] iv)
         {
-
-            MemoryStream ms = new MemoryStream();
-            Rijndael alg = Rijndael.Create();
-            alg.Key = Key;
+            using var ms = new MemoryStream();
+            using var alg = Rijndael.Create();
+            alg.Key = key;
             alg.IV = iv;
-            CryptoStream cs = new CryptoStream(ms, alg.CreateDecryptor(), CryptoStreamMode.Write);
+            using var cs = new CryptoStream(ms, alg.CreateDecryptor(), CryptoStreamMode.Write);
             cs.Write(cipherData, 0, cipherData.Length);
             cs.Close();
-            byte[] decryptedData = ms.ToArray();
+            cs.Dispose();
+            var decryptedData = ms.ToArray();
+            ms.Dispose();
+            alg.Dispose();
             return decryptedData;
         }
 
 
-        public string Decrypt(string data, string password, int bits)
+        public static string Decrypt(string data, string password, int bits)
         {
-
             byte[] cipherBytes = Convert.FromBase64String(data);
-
             PasswordDeriveBytes pdb = new PasswordDeriveBytes(password,
+            new byte[] { 0x00, 0x01, 0x02, 0x1C, 0x1D, 0x1E, 0x03, 0x04, 0x05, 0x0F, 0x20, 0x21, 0xAD, 0xAF, 0xA4 });
 
-                new byte[] { 0x00, 0x01, 0x02, 0x1C, 0x1D, 0x1E, 0x03, 0x04, 0x05, 0x0F, 0x20, 0x21, 0xAD, 0xAF, 0xA4 });
-
-            if (bits == 128)
+            byte[] decryptedData;
+            switch (bits)
             {
-                byte[] decryptedData = Decrypt(cipherBytes, pdb.GetBytes(16), pdb.GetBytes(16));
-                return System.Text.Encoding.Unicode.GetString(decryptedData);
-            }
-            else if (bits == 192)
-            {
-                byte[] decryptedData = Decrypt(cipherBytes, pdb.GetBytes(24), pdb.GetBytes(16));
-                return System.Text.Encoding.Unicode.GetString(decryptedData);
-            }
-            else if (bits == 256)
-            {
-                byte[] decryptedData = Decrypt(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
-                return System.Text.Encoding.Unicode.GetString(decryptedData);
-            }
-            else
-            {
-                return string.Concat(bits);
+                case (128):
+                    decryptedData = Decrypt(cipherBytes, pdb.GetBytes(16), pdb.GetBytes(16));
+                    break;
+                case (192):
+                    decryptedData = Decrypt(cipherBytes, pdb.GetBytes(24), pdb.GetBytes(16));
+                    break;
+                case (256):
+                    decryptedData = Decrypt(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
+                    break;
+                default:
+                    return string.Concat(bits);
             }
 
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects)
-                }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
-                _disposedValue = true;
-            }
-        }
-
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~AES()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
-
-        public void Dispose()
-        {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            return Encoding.Unicode.GetString(decryptedData);
         }
     }
 }

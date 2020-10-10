@@ -2,6 +2,7 @@
 using System.Windows;
 
 using Sandogh.Bussiness;
+using Sandogh.Utility.Cryptography;
 
 namespace Sandogh.App
 {
@@ -14,23 +15,31 @@ namespace Sandogh.App
 
         public RegisterationWindow()
         {
+
             InitializeComponent();
         }
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
-            string alldata = null;
-            alldata += HardwareInfo.GetBoardProductId() + '|';
-            alldata += HardwareInfo.GetHddSerialNo() + '|';
-            alldata += HardwareInfo.GetMacAddress() + '|';
-            alldata += HardwareInfo.GetProcessorId();
-            DialogResult = true;
+            var activationKey = Aes.Encrypt(TxtSerial.Text.Trim(), TxtHardwareSerial.Text, 256);
+            if (TxtActivation.Text.Equals(activationKey))
+            {
+                RegistryOperator.CreateKey("SerialNumber", TxtSerial.Text.Trim());
+                RegistryOperator.CreateKey("ActivationKey", activationKey);
+                DialogResult = true;
+            }
         }
 
         private void BtnCancel_OnClick(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
             DialogResult = false;
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            TxtHardwareSerial.Text = HardwareInfo.GetHddSerialNo();
+
 
         }
 
@@ -63,8 +72,9 @@ namespace Sandogh.App
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
+
         #endregion Disposing
 
-        
+
     }
 }

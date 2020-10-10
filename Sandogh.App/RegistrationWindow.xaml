@@ -7,12 +7,12 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         x:Class="Sandogh.App.RegisterationWindow"
         mc:Ignorable="d"
-        Title="RegisterationWindow" Height="450" Width="300">
+        Title="RegisterationWindow" Height="450" Width="300" Loaded="Window_Loaded">
     <Grid>
         <StackPanel>
-            <TextBox Name="TxtSerial"/>
-            <TextBox Name="TxtHardwareSerial"/>
-            <TextBox Name="TxtActivation"/>
+            <TextBox Name="TxtSerial" Text="1234"/>
+            <TextBlock Name="TxtHardwareSerial" />
+            <TextBox Name="TxtActivation" Text="eEe0wD+KuL1Lk978kaBjSA=="/>
             <Button Name="BtnOk" Content="تایید" Click="BtnOk_Click"/>
 <Button Name="BtnCancel" Content="لغو" Click="BtnCancel_OnClick"/>
         </StackPanel>

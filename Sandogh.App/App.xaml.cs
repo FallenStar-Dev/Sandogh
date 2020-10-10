@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using Sandogh.Bussiness;
+using Sandogh.Utility.Cryptography;
 using System.Windows;
 
 namespace Sandogh.App
@@ -10,29 +11,36 @@ namespace Sandogh.App
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Thread.Sleep(4000);
+            // Thread.Sleep(4000);
             var main = new MainWindow();
             using var register = new RegisterationWindow();
             using var login = new LoginWindow();
-            if (register.ShowDialog().Equals(true))
+            if (LicenceIsValid() || (register.ShowDialog().Equals(true)))
             {
-                register.Dispose();
-                register.Close();
                 if (login.ShowDialog().Equals(true))
                 {
                     login.Dispose();
                     login.Close();
-                    // main = new MainWindow();
                     main.ShowDialog();
-                    // main.Close();
                 }
             }
+
 
             register.Dispose();
             register.Close();
             login.Dispose();
             login.Close();
             main.Close();
+        }
+
+        private static bool LicenceIsValid()
+        {
+            return RegistryOperator.IsKeyExist("ActivationKey") &&
+                   RegistryOperator.IsKeyExist("SerialNumber") &&
+                    Aes.Decrypt(RegistryOperator.GetKey("ActivationKey"),
+                            HardwareInfo.GetHddSerialNo(), 256)
+                        .Equals(RegistryOperator.GetKey("SerialNumber"));
+
         }
     }
 }
