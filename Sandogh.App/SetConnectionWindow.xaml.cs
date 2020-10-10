@@ -7,6 +7,7 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Core.EntityClient;
 using System.Windows;
 using System.Windows.Input;
+using Sandogh.DataLayer;
 using Sandogh.Utility.Cryptography;
 
 namespace Sandogh.App
@@ -68,7 +69,7 @@ namespace Sandogh.App
                         registryKey?.SetValue("ConnectionString", encryptedConnectionString);
                     }
               
-                    GlobalVariables.MainConnectionString = EntityConnectionString;
+                    DataBaseConnection.MainConnectionString = EntityConnectionString;
                     DialogResult = true;
                     registryKey?.Close();
                     registryKey?.Dispose();

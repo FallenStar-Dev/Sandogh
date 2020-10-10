@@ -8,8 +8,10 @@ namespace Sandogh.App
     /// <summary>
     /// Interaction logic for Window_User.xaml
     /// </summary>
-    public partial class UsersWindow : Window, IDisposable
+    public partial class UsersWindow : Window,IDisposable
     {
+        private bool _disposedValue;
+
         public UsersWindow()
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace Sandogh.App
             */
         }
 
-        public void Dispose() { this.Close(); }
+       
 
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
@@ -29,20 +31,18 @@ namespace Sandogh.App
         }
         private void RefreshDataGrid()
         {
-            using (UnitOfWork a = new UnitOfWork())
-            {
-                // DgvUsers.ItemsSource = a.UserRepository.GetAllUserWithJobDetails();
-                DgvUsers.ItemsSource = a.UserGenericRepository.GetAllUserSimpleDetails();
-                a.Dispose();
-            }
+            using var a = new UnitOfWork();
+            // DgvUsers.ItemsSource = a.UserRepository.GetAllUserWithJobDetails();
+            DgvUsers.ItemsSource = a.UserGenericRepository.GetAllUserSimpleDetails();
+            a.Dispose();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UnitOfWork a = new UnitOfWork();
-            UserSimpleView selectedUserRow = (UserSimpleView)DgvUsers.SelectedItem;
-            int id = selectedUserRow.UserID;
-            AddOrEditUserWindow window = new AddOrEditUserWindow(id);
+            var a = new UnitOfWork();
+            var selectedUserRow = (UserSimpleView)DgvUsers.SelectedItem;
+            var id = selectedUserRow.UserID;
+            var window = new AddOrEditUserWindow(id);
             window.ShowDialog();
             /*a.UserGenericRepository.Insert(new User()
             {
@@ -76,5 +76,37 @@ namespace Sandogh.App
              DgvUsers.ItemsSource = a.UserRepository.GetAllUserWithJobDetails();   */
             a.Dispose();
         }
+
+        #region Disposing
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects)
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                _disposedValue = true;
+            }
+        }
+
+        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
+        // ~UsersWindow()
+        // {
+        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        //     Dispose(disposing: false);
+        // }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

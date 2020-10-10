@@ -28,7 +28,7 @@ namespace Sandogh.DataLayer.Services
         }
 
         
-        public UserFullView GetUserFullDetailsByID(int id)
+        public UserFullView GetUserFullDetailsById(int id)
         {
             return _db.UserFullViews.SingleOrDefault(c => c.UserID == id);
         }

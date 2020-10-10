@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sandogh.DataLayer.Context;
 
 namespace Sandogh.Bussiness
 {
     public class GlobalVariables
     {
-        private static string _MainConnectionString;
-
-        public static string MainConnectionString
-        {
-            get { return _MainConnectionString; }
-            set { _MainConnectionString = value; }
-        }
-
+        public static UserFullView ActiveUser { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace Sandogh.DataLayer.Repository
     public interface IUserRepository<T>: IGenericRepository<T> where T :User
     {
         public UserFullView Login(string username, string password);
-        public UserFullView GetUserFullDetailsByID(int id);
+        public UserFullView GetUserFullDetailsById(int id);
         public IList<UserFullView> GetAllUserFullDetails();
         public IList<UserSimpleView> GetAllUserSimpleDetails();
        // public Tbl_Users GetUserByID(int id);

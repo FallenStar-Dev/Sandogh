@@ -10,6 +10,7 @@ using System.Data.Entity.Core;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Sandogh.DataLayer;
 
 namespace Sandogh.App
 {
@@ -38,16 +39,17 @@ namespace Sandogh.App
                     using var db = new UnitOfWork();
                     {
                         //  Sp_Login_Result user = db.UserRepository.Login(TxtUsername.Text, TxtPassword.Password);
-                        UserFullView user = db.UserGenericRepository.Login(TxtUsername.Text, TxtPassword.Password);
+                        var user = db.UserGenericRepository.Login(TxtUsername.Text, TxtPassword.Password);
 
-                        if (user is not null)
+                        if (user != null)
                         {
-                            if (user.TActivity.Equals("فعال"))
+                            if (user.Activity)
                             {
-                                Global_variable.ActiveUser = user;
+                                GlobalVariables.ActiveUser = user;
+                                db.Dispose();
                                 DialogResult = true;
                             }
-                            else if (user.TActivity.Equals("غیر فعال"))
+                            else
                             {
                                 MessageBox.Show("این حساب کاربری غیر فعال است");
                                 TxtsResetter();
@@ -55,6 +57,7 @@ namespace Sandogh.App
                         }
                         else
                         {
+                            db.Dispose();
                             TxtsResetter();
                             _tryToLogin++;
                             if (_tryToLogin >= 3) ExitFromApplication();
@@ -114,7 +117,7 @@ namespace Sandogh.App
             {
                 using var registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
                 using var aes = new Aes();
-                GlobalVariables.MainConnectionString = aes.Decrypt(registryKey?.GetValue("ConnectionString").ToString(), "password", 256);
+                DataBaseConnection.MainConnectionString = aes.Decrypt(registryKey?.GetValue("ConnectionString").ToString(), "password", 256);
                 registryKey?.Close();
                 registryKey?.Dispose();
                 aes.Dispose();
@@ -125,19 +128,15 @@ namespace Sandogh.App
 
         private bool RegistryConnectionChecker()
         {
-            using (var registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh"))
+            using var registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
+            if (registryKey != null && registryKey.GetValueNames().Contains("ConnectionString").Equals(true))
             {
-                if (registryKey?.GetValueNames().Contains("ConnectionString") is not null)
-                {
-                    using (var aes = new Aes())
-                    {
-                        GlobalVariables.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(), "password", 256);
-                    }
-
-                    registryKey.Close();
-                    registryKey.Dispose();
-                    return true;
-                }
+                using var aes = new Aes();
+                DataBaseConnection.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(), "password", 256);
+                aes.Dispose();
+                registryKey.Close();
+                registryKey.Dispose();
+                return true;
             }
 
             MessageBox.Show("رشته اتصالی وجود ندارد");

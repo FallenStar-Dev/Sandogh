@@ -52,5 +52,11 @@
   <ItemGroup>
     <Folder Include="SystemInfo\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sandogh.DataLayer\Sandogh.DataLayer.csproj">
+      <Project>{a8e7f5d5-f94c-4a05-baef-9a1882e92e0f}</Project>
+      <Name>Sandogh.DataLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

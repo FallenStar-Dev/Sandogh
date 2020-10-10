@@ -95,6 +95,7 @@
     <Compile Include="Context\UserSimpleView.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBaseConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IGenericRepository.cs" />
     <Compile Include="Repository\IPersonRepository.cs" />
@@ -130,12 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sandogh.Bussiness\Sandogh.Bussiness.csproj">
-      <Project>{f4af24ce-225d-4ae0-97fa-bf96d952a7eb}</Project>
-      <Name>Sandogh.Bussiness</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

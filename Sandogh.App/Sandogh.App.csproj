@@ -112,7 +112,6 @@
     </Compile>
     <Compile Include="Convertor\ActivityConvertor.cs" />
     <Compile Include="Convertor\GenderConvertor.cs" />
-    <Compile Include="Global_variable.cs" />
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
