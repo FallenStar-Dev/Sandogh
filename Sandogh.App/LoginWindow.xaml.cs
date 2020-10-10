@@ -26,14 +26,16 @@ namespace Sandogh.App
         /// how many time tried with incorrect username and password
         /// </summary>
 
-        private int TryToLogin = 0;
+        private int _tryToLogin = 0;
+        private bool _disposedValue;
+
         private void BtnLogin_click(object sender, RoutedEventArgs e)
         {
             if (RegistryConnectionChecker())
             {
                 try
                 {
-                    using UnitOfWork db = new UnitOfWork();
+                    using var db = new UnitOfWork();
                     {
                         //  Sp_Login_Result user = db.UserRepository.Login(TxtUsername.Text, TxtPassword.Password);
                         UserFullView user = db.UserGenericRepository.Login(TxtUsername.Text, TxtPassword.Password);
@@ -54,8 +56,8 @@ namespace Sandogh.App
                         else
                         {
                             TxtsResetter();
-                            TryToLogin++;
-                            if (TryToLogin >= 3) ExitFromApplication();
+                            _tryToLogin++;
+                            if (_tryToLogin >= 3) ExitFromApplication();
                         }
                     }
                 }
@@ -79,7 +81,7 @@ namespace Sandogh.App
             DialogResult = false;
             ExitFromApplication();
         }
-        private void ExitFromApplication()
+        private static void ExitFromApplication()
         {
             Application.Current.Shutdown();
         }
@@ -103,35 +105,32 @@ namespace Sandogh.App
             }
         }
 
-        public void Dispose() { }
+
 
         private void BtnOpenConnectionWindow_Click(object sender, RoutedEventArgs e)
         {
-            using (SetConnectionWindow connectionWindow = new SetConnectionWindow() { Owner = this })
+            using var connectionWindow = new SetConnectionWindow() { Owner = this };
+            if (connectionWindow.ShowDialog().Equals(true))
             {
-                if (connectionWindow.ShowDialog().Equals(true))
-                {
-                    using RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
-                    using (Aes aes =new Aes())
-                    {                        
-                        GlobalVariables.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(),"password",256);               
-                    }
-                    registryKey.Close();
-                    registryKey.Dispose();
-
-                }
-                connectionWindow.Dispose();
+                using var registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh");
+                using var aes = new Aes();
+                GlobalVariables.MainConnectionString = aes.Decrypt(registryKey?.GetValue("ConnectionString").ToString(), "password", 256);
+                registryKey?.Close();
+                registryKey?.Dispose();
+                aes.Dispose();
             }
+            connectionWindow.Dispose();
+            connectionWindow.Close();
         }
 
         private bool RegistryConnectionChecker()
         {
-            using (RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh"))
+            using (var registryKey = Registry.CurrentUser.CreateSubKey(@"software\\Sandogh"))
             {
-                if (registryKey.GetValueNames().Contains("ConnectionString"))
+                if (registryKey?.GetValueNames().Contains("ConnectionString") is not null)
                 {
-                    using (Aes aes = new Aes())
-                    {                        
+                    using (var aes = new Aes())
+                    {
                         GlobalVariables.MainConnectionString = aes.Decrypt(registryKey.GetValue("ConnectionString").ToString(), "password", 256);
                     }
 
@@ -151,5 +150,36 @@ namespace Sandogh.App
             RegistryConnectionChecker();
             TxtsResetter();
         }
+
+        #region Disposing
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects)
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                _disposedValue = true;
+            }
+        }
+
+        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
+        // ~LoginWindow()
+        // {
+        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        //     Dispose(disposing: false);
+        // }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion Disposing
     }
 }

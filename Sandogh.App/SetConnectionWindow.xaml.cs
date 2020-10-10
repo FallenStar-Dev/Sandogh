@@ -60,18 +60,18 @@ namespace Sandogh.App
 
             if (IsServerConnected(EntityConnectionString))
             {
-                using (RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(@"software\Sandogh"))
+                using (var registryKey = Registry.CurrentUser.CreateSubKey(@"software\Sandogh"))
                 {
-                    using (Aes aes = new Aes())
+                    using (var aes = new Aes())
                     {
-                        string EnryptedConnectionString = aes.Encrypt(EntityConnectionString, "password", 256);
-                        registryKey.SetValue("ConnectionString", EnryptedConnectionString);
+                        string encryptedConnectionString = aes.Encrypt(EntityConnectionString, "password", 256);
+                        registryKey?.SetValue("ConnectionString", encryptedConnectionString);
                     }
               
                     GlobalVariables.MainConnectionString = EntityConnectionString;
                     DialogResult = true;
-                    registryKey.Close();
-                    registryKey.Dispose();
+                    registryKey?.Close();
+                    registryKey?.Dispose();
                 }
             }
 
@@ -98,7 +98,7 @@ namespace Sandogh.App
 
         private static bool IsServerConnected(string connectionString)
         {
-            using EntityConnection connection = new EntityConnection(connectionString);
+            using var connection = new EntityConnection(connectionString);
             try
             {
                 connection.Open();
@@ -108,6 +108,7 @@ namespace Sandogh.App
             }
             catch (EntityException)
             {
+                connection.Close();
                 connection.Dispose();
                 return false;
             }

@@ -58,7 +58,8 @@ namespace Sandogh.App
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            RegisterationWindow r = new RegisterationWindow();
+            r.ShowDialog();
         }
     }
 }
