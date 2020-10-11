@@ -27,8 +27,13 @@
             <StackPanel Width="350">
                 <Image Source="images/LoginLogo.png" Width="300" Height="300" VerticalAlignment="Top" 
                        Margin="30 15" Stretch="Fill"/>
-                <Button x:Name="BtnConnectionString" Background="Transparent" BorderThickness="0" Content="تنظیم رشته اتصال" Foreground="Beige"
-                        HorizontalAlignment="Left" Margin="10 0" FontFamily="/Sandogh.App;component/Font/#Lalezar" Click="BtnOpenConnectionWindow_Click" TabIndex="3"/>
+                <Button x:Name="BtnConnectionString" Background="Transparent" BorderThickness="0"  Foreground="Beige"
+                        HorizontalAlignment="Left" Margin="30 0" FontFamily="/Sandogh.App;component/Font/#Lalezar" Click="BtnOpenConnectionWindow_Click" TabIndex="3">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="LanConnect" Width="20" Height="20"/>
+                            <TextBlock Text="تنظیم رشته اتصال" Margin="5 0"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel Margin="20 40" HorizontalAlignment="Center">
@@ -53,8 +58,7 @@
                         <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                          materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448"
                          Background="#D94448" Foreground="White" ToolTip="ورود به برنامه" x:Name="BtnLogin" Click="BtnLogin_click"
-                         Content="ورود" FontFamily="/Sandogh.App;component/Font/#Lalezar" TabIndex="2">
-                        </Button>
+                          FontFamily="/Sandogh.App;component/Font/#Lalezar" Content="ورود" TabIndex="2"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

@@ -22,7 +22,7 @@ namespace Sandogh.App
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
             var activationKey = Aes.Encrypt(TxtSerial.Text.Trim(), TxtHardwareSerial.Text, 256);
-           // TxtActivation.Text = activationKey;
+            TxtActivation.Text = activationKey;
             if (TxtActivation.Text.Equals(activationKey))
             {               
                 RegistryOperator.CreateKey("SerialNumber", TxtSerial.Text.Trim());
@@ -39,10 +39,7 @@ namespace Sandogh.App
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            
-
-
+            TxtSerial.Focus();
         }
 
         private void Window_Reset()
