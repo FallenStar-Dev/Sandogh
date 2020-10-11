@@ -7,14 +7,90 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         x:Class="Sandogh.App.RegisterationWindow"
         mc:Ignorable="d"
-        Title="RegisterationWindow" Height="450" Width="300" Loaded="Window_Loaded">
+        Title="RegisterationWindow" Height="376" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" IsTabStop="False" AllowsTransparency="True" WindowStyle="None">
     <Grid>
-        <StackPanel>
-            <TextBox Name="TxtSerial" Text="1234"/>
-            <TextBlock Name="TxtHardwareSerial" />
-            <TextBox Name="TxtActivation" Text="eEe0wD+KuL1Lk978kaBjSA=="/>
-            <Button Name="BtnOk" Content="تایید" Click="BtnOk_Click"/>
-<Button Name="BtnCancel" Content="لغو" Click="BtnCancel_OnClick"/>
-        </StackPanel>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.1,0" MappingMode="RelativeToBoundingBox" StartPoint="0.9,1">
+                <GradientStop Color="#FFF78174"/>
+                <GradientStop Color="#FF9E0C8A" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Border Height="320" VerticalAlignment="Top" CornerRadius="0,0,80,0"
+                MouseDown="Border_MouseDown" >
+            <Border.Background>
+                <LinearGradientBrush EndPoint=".5,1" MappingMode="RelativeToBoundingBox" StartPoint=".5,0">
+                    <GradientStop Color="#FFFFE286" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".8*"/>
+                    <ColumnDefinition Width=".9*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                            <Setter Property="FontFamily" Value="/Sandogh.App;component/Font/#Lalezar"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Width" Value="180"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Setter Property="CaretBrush" Value="#FFDC3149"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="25*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="1">
+                        <Button Margin="5 10" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
+                        x:Name="BtnExit" ToolTip="خروج" Click="BtnExit_Click" IsCancel="True" IsTabStop="False">
+                            <materialDesign:PackIcon Kind="Close"  Foreground="White" Width="25" Height="25"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Margin="0,40,0,0" >
+                        <TextBlock Text="فعالسازی نرم افزار"  TextAlignment="Center" 
+                               FontSize="38" FontFamily="/Sandogh.App;component/Font/#Lalezar" FontWeight="Bold">
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon Width="30" Height="30" Kind="AlphaABox" Foreground="Black" Margin="5"/>
+                            <TextBox Name="TxtSerial" CaretBrush="#FFDC3149"
+                                     materialDesign:HintAssist.Hint="سریال نصب برنامه را وارد کنید" LostFocus="TxtSerial_LostFocus"  />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon Width="30" Height="30" Kind="Harddisk" Foreground="Black" Margin="5"/>
+                            <TextBox Name="TxtHardwareSerial" IsReadOnly="True" materialDesign:HintAssist.Hint="کد سخت افزاری رایانه شخصی"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon Width="30" Height="30" Kind="KeyChain" Foreground="Black" Margin="5"/>
+                            <TextBox Name="TxtActivation" materialDesign:HintAssist.Hint="کد فعالسازی رایانه خود را وارد کنید"/>
+                        </StackPanel>
+
+                        <Button Name="BtnOk" Background="#DC3149" Margin="5" Click="BtnOk_Click" 
+                        Style="{StaticResource MaterialDesignRaisedButton}"  materialDesign:ButtonAssist.CornerRadius="10"
+                                Width="100">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Like" VerticalAlignment="Center" Margin="5"/>
+                                <TextBlock Text="تایید" FontFamily="/Sandogh.App;component/Font/#Lalezar" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <!--<Button Name="BtnCancel" Background="#DC3149" BorderBrush="AliceBlue" Content="لغو" Style="{StaticResource MaterialDesignRaisedButton}"
+                        Margin="5" Click="BtnCancel_OnClick"  materialDesign:ButtonAssist.CornerRadius="10"/>-->
+                    </StackPanel>
+
+                </Grid>
+                <Grid Grid.Column="0" >
+                    <StackPanel VerticalAlignment="Center">
+                        <Image  Source="Images/activeapp.png" Stretch="Fill" Margin="10" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+
     </Grid>
 </Window>

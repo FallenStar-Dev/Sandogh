@@ -269,6 +269,9 @@
   <ItemGroup>
     <Folder Include="MyDic\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\activeApp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
