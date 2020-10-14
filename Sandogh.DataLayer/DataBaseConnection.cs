@@ -9,6 +9,5 @@ namespace Sandogh.DataLayer
     public static class DataBaseConnection
     {
         public static string MainConnectionString { get; set; }
-
     }
 }
