@@ -9,7 +9,7 @@ namespace Sandogh.App
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private void ApplicationStartup(object sender, StartupEventArgs e)
         {
             // Thread.Sleep(4000);
             var main = new MainWindow();
@@ -25,7 +25,6 @@ namespace Sandogh.App
                 }
             }
 
-
             register.Dispose();
             register.Close();
             login.Dispose();
@@ -37,9 +36,9 @@ namespace Sandogh.App
         {
             return RegistryOperator.IsKeyExist("ActivationKey") &&
                    RegistryOperator.IsKeyExist("SerialNumber") &&
-                    Aes.Decrypt(RegistryOperator.GetKey("ActivationKey"),
-                            HardwareInfo.GetHddSerialNo(), 256)
-                        .Equals(RegistryOperator.GetKey("SerialNumber"));
+                   Aes.Decrypt(RegistryOperator.GetKey("ActivationKey"),
+                   HardwareInfo.GetHddSerialNo(), 256)
+                   .Equals(RegistryOperator.GetKey("SerialNumber"));
 
         }
     }

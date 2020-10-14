@@ -22,7 +22,7 @@
 
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="220" VerticalAlignment="Center">
-                <Image  Source="images/DatabaseLogo.png" Width="200" Height="200" Margin="10"
+                <Image  Source="../../../images/DatabaseLogo.png" Width="200" Height="200" Margin="10"
                        VerticalAlignment="Center" Stretch="Fill"/>
 
             </StackPanel>

@@ -103,7 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddOrEditUserWindow.xaml.cs">
+    <Compile Include="Windows\Users\AddOrEditUserWindow.xaml.cs">
       <DependentUpon>AddOrEditUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -112,24 +112,24 @@
     </Compile>
     <Compile Include="Convertor\ActivityConvertor.cs" />
     <Compile Include="Convertor\GenderConvertor.cs" />
-    <Compile Include="RegistrationWindow.xaml.cs">
+    <Compile Include="Windows\Settings\Registeration\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SetConnectionWindow.xaml.cs">
+    <Compile Include="Windows\Settings\Connection\SetConnectionWindow.xaml.cs">
       <DependentUpon>SetConnectionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TransactionsWindow.xaml.cs">
+    <Compile Include="Windows\Transaction\TransactionsWindow.xaml.cs">
       <DependentUpon>TransactionsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersWindow.xaml.cs">
+    <Compile Include="Windows\Users\UsersWindow.xaml.cs">
       <DependentUpon>UsersWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoginWindow.xaml.cs">
+    <Compile Include="Windows\Login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\Main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -215,35 +215,35 @@
     <SplashScreen Include="Images\SplashEnterance.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AddOrEditUserWindow.xaml">
+    <Page Include="Windows\Users\AddOrEditUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyRes.xaml">
+    <Page Include="Dictionary\MyRes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistrationWindow.xaml">
+    <Page Include="Windows\Settings\Registeration\RegistrationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SetConnectionWindow.xaml">
+    <Page Include="Windows\Settings\Connection\SetConnectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="Windows\Login\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Windows\Main\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TransactionsWindow.xaml">
+    <Page Include="Windows\Transaction\TransactionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersWindow.xaml">
+    <Page Include="Windows\Users\UsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,9 +266,7 @@
   <ItemGroup>
     <Resource Include="Images\DataBaseLogo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MyDic\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\activeApp.png" />
   </ItemGroup>

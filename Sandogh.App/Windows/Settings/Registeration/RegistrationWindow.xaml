@@ -86,7 +86,7 @@
                 </Grid>
                 <Grid Grid.Column="0" >
                     <StackPanel VerticalAlignment="Center">
-                        <Image  Source="Images/activeapp.png" Stretch="Fill" Margin="10" />
+                        <Image  Source="../../../Images/activeapp.png" Stretch="Fill" Margin="10" />
                     </StackPanel>
                 </Grid>
             </Grid>

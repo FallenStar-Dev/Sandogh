@@ -25,7 +25,7 @@
         </Border>
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
-                <Image Source="images/LoginLogo.png" Width="300" Height="300" VerticalAlignment="Top" 
+                <Image Source="../../images/LoginLogo.png" Width="300" Height="300" VerticalAlignment="Top" 
                        Margin="30 15" Stretch="Fill"/>
                 <Button x:Name="BtnConnectionString" Background="Transparent" BorderThickness="0"  Foreground="Beige"
                         HorizontalAlignment="Left" Margin="30 0" FontFamily="/Sandogh.App;component/Font/#Lalezar" Click="BtnOpenConnectionWindow_Click" TabIndex="3">
