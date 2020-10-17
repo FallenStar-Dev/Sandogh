@@ -4,17 +4,83 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandogh.App"
+        xmlns:time="clr-namespace:Sandogh.Utility.DateTimeAutoUpdate;assembly=Sandogh.Utility"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.MainWindow"
         mc:Ignorable="d"
-        Title="فرم اصلی" Localization.Attributes="fa-IR" Height="450" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
-    <Grid>
+        Title="فرم اصلی" Localization.Attributes="fa-IR" Height="600" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
+    <DockPanel FlowDirection="RightToLeft">
+        <Grid DockPanel.Dock="Top" ZIndex="1" Background="Yellow" >
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="BorderBrush" Value="White"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Name="BtnUsers" Content="کاربران"  Margin="2" Click="BtnUsers_Click"/>
+                <Button x:Name="BtnTransaction" Content="تراکنش" Margin="2" Click="BtnTransaction_Click"/>
+            </StackPanel>
+        </Grid>
+        
 
-        <StackPanel>
-            <DockPanel VerticalAlignment="Top"  FlowDirection="RightToLeft">
+        
 
-                <Button x:Name="BtnUsers" Content="کاربران" Margin="5" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="BtnUsers_Click"/>
-                <Button x:Name="BtnTransaction" Content="تراکنش" Margin="5" HorizontalAlignment="left" VerticalAlignment="Top" Width="75" Click="BtnTransaction_Click"/>
-            </DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" ZIndex="1" Background="#E0F7E3" Height="50" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <time:TimeAutoUpdater x:Key="TimeAutoUpdater" />
+
+            </StackPanel.Resources>
+            <TextBlock   VerticalAlignment="Center" Padding="10"
+                         Text="{Binding Source={StaticResource TimeAutoUpdater},Path=Now,StringFormat={}{0:F},
+                         ConverterCulture=fa-ir,BindsDirectlyToSource=True}" TextAlignment="Center"
+                         FontFamily="/Sandogh.App;component/Font/#Lalezar" />
         </StackPanel>
-    </Grid>
+        <Expander DockPanel.Dock="Left" Header="منو"
+                  Foreground="white"
+                  FontFamily="/Sandogh.App;component/Font/#Lalezar" ExpandDirection="Right"
+                  IsExpanded="False">
+            <Expander.Background>
+                <LinearGradientBrush  StartPoint="0.1,0" EndPoint=".9,1">
+                    <GradientStop Color="red" Offset="1" />
+                    <GradientStop Color="OrangeRed" Offset=".5"/>
+                    <GradientStop Color="Gold" Offset="0" />
+                </LinearGradientBrush>
+            </Expander.Background>
+            <StackPanel Width="200" Margin="2" ZIndex="1">
+                <StackPanel.Resources>
+
+                    <Style TargetType="Expander" BasedOn="{StaticResource MaterialDesignExpander}">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Background" Value="Gray"/>
+                    </Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                        <Setter Property="Margin" Value="1"/>
+                        <Setter Property="Background" Value="DimGray"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Expander Header="فایل" Foreground="White" Padding="0 2">
+                    <Expander.Background>
+                        <SolidColorBrush Color="Gray"/>
+                    </Expander.Background>
+                    <StackPanel>
+                        <Button Content="جدید"/>
+                        <Button Content="باز کردن"/>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="ادیت" Foreground="White" >
+                    <StackPanel>
+                        <Button Content="کپی"/>
+                        <Button Content="درج"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </Expander>
+        <Rectangle></Rectangle>
+    </DockPanel>
+
+
+
 </Window>

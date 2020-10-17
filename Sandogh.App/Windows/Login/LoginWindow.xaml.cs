@@ -6,6 +6,7 @@ using Sandogh.Utility.Cryptography;
 
 using System;
 using System.Data.Entity.Core;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -101,14 +102,15 @@ namespace Sandogh.App
 
         private void CheckTxtInput()
         {
-            if (string.IsNullOrWhiteSpace(TxtUsername.Text) || string.IsNullOrWhiteSpace(TxtPassword.Password))
-            {
-                BtnLogin.IsEnabled = false;
-            }
-            else
-            {
-                BtnLogin.IsEnabled = true;
-            }
+            BtnLogin.IsEnabled=InputValidator.ValidateInput.IsLoginInputValid(TxtUsername.Text,TxtPassword.Password);
+            //if (string.IsNullOrWhiteSpace(TxtUsername.Text) || string.IsNullOrWhiteSpace(TxtPassword.Password))
+            //{
+            //    BtnLogin.IsEnabled = false;
+            //}
+            //else
+            //{
+            //    BtnLogin.IsEnabled = true;
+            //}
         }
 
 
@@ -187,7 +189,9 @@ namespace Sandogh.App
 
         private void TxtPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            CheckTxtInput();
+             CheckTxtInput();
         }
+
+
     }
 }

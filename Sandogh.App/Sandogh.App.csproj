@@ -103,7 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Validator\UsernameValidator.cs" />
+    <Compile Include="Validator\InputValidator.cs" />
     <Compile Include="Windows\Settings\SmsConfig\SmsConfiguration.xaml.cs">
       <DependentUpon>SmsConfiguration.xaml</DependentUpon>
     </Compile>
