@@ -11,18 +11,10 @@
 
         <StackPanel>
             <DockPanel VerticalAlignment="Top"  FlowDirection="RightToLeft">
-                
+
                 <Button x:Name="BtnUsers" Content="کاربران" Margin="5" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="BtnUsers_Click"/>
                 <Button x:Name="BtnTransaction" Content="تراکنش" Margin="5" HorizontalAlignment="left" VerticalAlignment="Top" Width="75" Click="BtnTransaction_Click"/>
             </DockPanel>
-            <StackPanel>
-                
-
-            </StackPanel>
-            
-            
         </StackPanel>
-
-
     </Grid>
 </Window>

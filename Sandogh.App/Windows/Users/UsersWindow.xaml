@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Convert="clr-namespace:Sandogh.App.Convertor"
+        xmlns:convert="clr-namespace:Sandogh.App.Convertor"
         xmlns:local="clr-namespace:Sandogh.App"
-        xmlns:Context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.UsersWindow"
+        xmlns:context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.UsersWindow"
         mc:Ignorable="d"
         Title="فرم کاربران" Height="450" Width="800" WindowStartupLocation="CenterOwner" >
     <Window.Resources>
-        <Convert:GenderConvertor x:Key="gc"/>
-        <Convert:ActivityConvertor x:Key="ac"/>
+        <convert:GenderConvertor x:Key="GenderConvertor"/>
+        <convert:ActivityConvertor x:Key="ActivityConvertor"/>
 
     </Window.Resources>
     <Grid>
@@ -31,7 +31,7 @@
                       IsTextSearchEnabled="True" FlowDirection="RightToLeft" SelectionMode="Single" 
                       FontFamily="/Sandogh.App;component/Font/#Lalezar" >
                 <DataGrid.Resources>
-                    <ResourceDictionary Source="MyRes.xaml"/>
+                    <ResourceDictionary Source="../.../../../Dictionary/DataGridDictionary.xaml"/>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="کد کاربر" Visibility="Collapsed" Binding="{Binding UserID}"/>
@@ -39,7 +39,7 @@
                     <DataGridTextColumn Header="فامیل" Binding="{Binding Family}" Width=".25*" />
                     <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName}" Width=".2*"/>
                     <DataGridTextColumn Header="رمز عبور" Binding="{Binding Password}" Width=".2*"/>
-                    <DataGridTextColumn Header="فعالیت" Binding="{Binding Activity,Converter={StaticResource ac}}" Width=".2*"/>
+                    <DataGridTextColumn Header="فعالیت" Binding="{Binding Activity,Converter={StaticResource ActivityConvertor}}" Width=".2*"/>
                     <DataGridTextColumn Header="سمت" Binding="{Binding JobName}" Width=".2*"/>
 
 

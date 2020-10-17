@@ -3,15 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:convert="clr-namespace:Sandogh.App.Convertor"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandogh.App"
+
         mc:Ignorable="d"
-        Title="فرم ورود" Height="450" Width="770" WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        Title="فرم ورود" Height="450" Width="770" WindowStartupLocation="CenterScreen" WindowStyle="None"
         ResizeMode="NoResize" AllowsTransparency="True" ScrollViewer.VerticalScrollBarVisibility="Disabled"
         ShowInTaskbar="False" IsTabStop="False" Loaded="Window_Loaded">
-    <Window.TaskbarItemInfo>
-        <TaskbarItemInfo/>
-    </Window.TaskbarItemInfo>
 
     <Grid MouseDown="Border_MouseDown">
         <Grid.Background>
@@ -25,50 +25,57 @@
         </Border>
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
-                <Image Source="../../images/LoginLogo.png" Width="300" Height="300" VerticalAlignment="Top" 
+                <Image Source="../../images/LoginLogo.png" Width="300" Height="300" VerticalAlignment="Top"
                        Margin="30 15" Stretch="Fill"/>
                 <Button x:Name="BtnConnectionString" Background="Transparent" BorderThickness="0"  Foreground="Beige"
                         HorizontalAlignment="Left" Margin="30 0" FontFamily="/Sandogh.App;component/Font/#Lalezar" Click="BtnOpenConnectionWindow_Click" TabIndex="3">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="LanConnect" Width="20" Height="20"/>
-                            <TextBlock Text="تنظیم رشته اتصال" Margin="5 0"/>
+                        <TextBlock Text="تنظیم رشته اتصال" Margin="5 0"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel Margin="20 40" HorizontalAlignment="Center">
-                    <TextBlock Text="مشخصات کاربری" Margin="20" Foreground="White" HorizontalAlignment="Right" TextAlignment="Center" 
+                    <TextBlock Text="مشخصات کاربری" Margin="20" Foreground="White" HorizontalAlignment="Right" TextAlignment="Center"
                                FontSize="40" FontFamily="/Sandogh.App;component/Font/#Lalezar" FontWeight="Bold">
                     </TextBlock>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="User" Width="30" Height="30" Foreground="White"/>
-                        <TextBox Name="TxtUsername" Margin="10 0" materialDesign:HintAssist.Hint="نام کاربری را وارد کنید" 
-                                 Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" 
-                                 KeyDown="TxtUsername_KeyDown" MaxLines="1" MaxLength="95"
+                        <TextBox Name="TxtUsername" Margin="10 0" materialDesign:HintAssist.Hint="نام کاربری را وارد کنید"
+                                 Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"
+                                  MaxLines="1" MaxLength="95" TextChanged="TxtUsername_OnTextChanged"
                                  FlowDirection="RightToLeft" FontFamily="/Sandogh.App;component/Font/#Lalezar" AllowDrop="False" TabIndex="0">
                         </TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="Lock" Width="30" Height="30" Foreground="White"/>
-                        <PasswordBox Name="TxtPassword" Margin="10 0" materialDesign:HintAssist.Hint="رمز عبور را وارد کنید" Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" 
-                                     KeyDown="TxtPassword_KeyDown" FlowDirection="RightToLeft" FontFamily="/Sandogh.App;component/Font/#Lalezar" AllowDrop="False" TabIndex="1">
+                        <PasswordBox Name="TxtPassword" Margin="10 0" materialDesign:HintAssist.Hint="رمز عبور را وارد کنید"
+                                     Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"
+                                     FlowDirection="RightToLeft" FontFamily="/Sandogh.App;component/Font/#Lalezar" AllowDrop="False" TabIndex="1"
+                                     PasswordChanged="TxtPassword_OnPasswordChanged">
                         </PasswordBox>
                     </StackPanel>
                     <StackPanel Margin="25" HorizontalAlignment="Center" >
-                        <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
-                         materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448"
-                         Background="#D94448" Foreground="White" ToolTip="ورود به برنامه" x:Name="BtnLogin" Click="BtnLogin_click"
-                          FontFamily="/Sandogh.App;component/Font/#Lalezar" Content="ورود" TabIndex="2"/>
+                        <StackPanel.Resources>
+
+
+                        </StackPanel.Resources>
+                        <Button Width="100" Height="40" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448"
+                                Background="#D94448" Foreground="White" ToolTip="ورود به برنامه" x:Name="BtnLogin" Click="BtnLogin_click"
+                                FontFamily="/Sandogh.App;component/Font/#Lalezar" Content="ورود" TabIndex="2" IsEnabled="False">
+
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Width="70">
-                <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
+                <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         x:Name="BtnExit" ToolTip="خروج" Click="BtnExit_Click" IsCancel="True" IsTabStop="False">
                     <materialDesign:PackIcon Kind="Close"  Foreground="White" Width="25" Height="25"/>
                 </Button>
             </StackPanel>
         </StackPanel>
-        
+
     </Grid>
 </Window>

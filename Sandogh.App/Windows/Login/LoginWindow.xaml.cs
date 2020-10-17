@@ -1,6 +1,4 @@
 ﻿
-using Microsoft.Win32;
-
 using Sandogh.Bussiness;
 using Sandogh.DataLayer;
 using Sandogh.DataLayer.Context;
@@ -8,8 +6,8 @@ using Sandogh.Utility.Cryptography;
 
 using System;
 using System.Data.Entity.Core;
-using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Sandogh.App
@@ -27,7 +25,7 @@ namespace Sandogh.App
         /// how many time tried with incorrect username and password
         /// </summary>
 
-        private int _tryToLogin = 0;
+        private int _tryToLogin;
         private bool _disposedValue;
 
         private void BtnLogin_click(object sender, RoutedEventArgs e)
@@ -36,10 +34,10 @@ namespace Sandogh.App
             {
                 try
                 {
-                    using var db = new UnitOfWork();
+                    using UnitOfWork db = new UnitOfWork();
                     {
-                        //  Sp_Login_Result user = db.UserRepository.Login(TxtUsername.Text, TxtPassword.Password);
-                        var user = db.UserGenericRepository.Login(TxtUsername.Text, TxtPassword.Password);
+
+                        UserFullView user = db.UserGenericRepository.Login(TxtUsername.Text, TxtPassword.Password);
 
                         if (user != null)
                         {
@@ -60,7 +58,10 @@ namespace Sandogh.App
                             db.Dispose();
                             TxtsResetter();
                             _tryToLogin++;
-                            if (_tryToLogin >= 3) ExitFromApplication();
+                            if (_tryToLogin >= 3)
+                            {
+                                ExitFromApplication();
+                            }
                         }
                     }
                 }
@@ -90,35 +91,30 @@ namespace Sandogh.App
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed) DragMove();
-        }
-
-        private void TxtUsername_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            if (e.LeftButton.Equals(MouseButtonState.Pressed))
             {
-                TxtPassword.Focus();
-            }
-        }
-        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                BtnLogin.Focus();
+                DragMove();
             }
         }
 
+
+
+        private void CheckTxtInput()
+        {
+            if (string.IsNullOrWhiteSpace(TxtUsername.Text) || string.IsNullOrWhiteSpace(TxtPassword.Password))
+            {
+                BtnLogin.IsEnabled = false;
+            }
+            else
+            {
+                BtnLogin.IsEnabled = true;
+            }
+        }
 
 
         private void BtnOpenConnectionWindow_Click(object sender, RoutedEventArgs e)
         {
-            using var connectionWindow = new SetConnectionWindow() { Owner = this };
-            if (connectionWindow.ShowDialog().Equals(true))
-
-                DataBaseConnection.MainConnectionString = Aes.Decrypt(RegistryOperator.GetKey("ConnectionString"), HardwareInfo.GetProcessorId(), 256);
-
-            connectionWindow.Dispose();
-            connectionWindow.Close();
+            ShowConnectionWindow();
         }
 
         private bool RegistryConnectionStringChecker()
@@ -130,10 +126,22 @@ namespace Sandogh.App
             }
 
             MessageBox.Show("رشته اتصالی وجود ندارد");
+            ShowConnectionWindow();
             BtnOpenConnectionWindow_Click(null, null);
             return false;
         }
 
+        private void ShowConnectionWindow()
+        {
+            using SetConnectionWindow connectionWindow = new SetConnectionWindow() { Owner = this };
+            if (connectionWindow.ShowDialog().Equals(true))
+            {
+                DataBaseConnection.MainConnectionString = Aes.Decrypt(RegistryOperator.GetKey("ConnectionString"), HardwareInfo.GetProcessorId(), 256);
+            }
+
+            connectionWindow.Dispose();
+            connectionWindow.Close();
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             RegistryConnectionStringChecker();
@@ -170,5 +178,16 @@ namespace Sandogh.App
             GC.SuppressFinalize(this);
         }
         #endregion Disposing
+
+
+        private void TxtUsername_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckTxtInput();
+        }
+
+        private void TxtPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            CheckTxtInput();
+        }
     }
 }

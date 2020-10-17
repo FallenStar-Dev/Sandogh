@@ -1,6 +1,8 @@
 ﻿using Sandogh.Bussiness;
 using Sandogh.Utility.Cryptography;
+
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Sandogh.App
 {
@@ -39,7 +41,12 @@ namespace Sandogh.App
                    Aes.Decrypt(RegistryOperator.GetKey("ActivationKey"),
                    HardwareInfo.GetHddSerialNo(), 256)
                    .Equals(RegistryOperator.GetKey("SerialNumber"));
+        }
 
+        private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.ToString());
+            e.Handled = true;
         }
     }
 }
