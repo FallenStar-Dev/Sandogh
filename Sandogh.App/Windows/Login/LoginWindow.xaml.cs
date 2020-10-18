@@ -83,7 +83,7 @@ namespace Sandogh.App
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+           // DialogResult = false;
             ExitFromApplication();
         }
         private static void ExitFromApplication()
@@ -129,7 +129,7 @@ namespace Sandogh.App
 
             MessageBox.Show("رشته اتصالی وجود ندارد");
             ShowConnectionWindow();
-            BtnOpenConnectionWindow_Click(null, null);
+           
             return false;
         }
 
