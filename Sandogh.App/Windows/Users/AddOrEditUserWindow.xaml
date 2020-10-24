@@ -40,7 +40,7 @@
                 </Style>
             </StackPanel.Resources>
             <StackPanel Orientation="Vertical" Width="300">
-                <TextBox x:Name="TxtJob"  Text="{Binding NationalCode}" materialDesign:HintAssist.Hint="کدملی را وارد کنید"/>
+                <TextBox x:Name="TxtJob"  Text="{Binding NationalCode}" materialDesign:HintAssist.Hint="کدملی را وارد کنید" TextChanged="TxtJob_TextChanged"/>
                 <TextBox x:Name="TxtName"  Text="{Binding Name}" materialDesign:HintAssist.Hint="نام را وارد کنید"/>
                 <TextBox x:Name="TxtFamily" Text="{Binding Family}" materialDesign:HintAssist.Hint="فامیل را وارد کنید"/>
                 <TextBox  Text="{Binding UserName}" materialDesign:HintAssist.Hint="نام کاربری را وارد کنید"/>

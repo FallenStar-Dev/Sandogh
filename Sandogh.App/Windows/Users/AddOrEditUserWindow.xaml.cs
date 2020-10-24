@@ -75,5 +75,12 @@ namespace Sandogh.App
             GC.SuppressFinalize(this);
         }
         #endregion Disposing
+
+        private void TxtJob_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            UnitOfWork u = new UnitOfWork();
+            UserFullView f = u.UserGenericRepository.GetUserFullDetailsByNationalCode(TxtJob.Text);
+            TxtName.Text = f?.Name.ToString();
+        }
     }
 }

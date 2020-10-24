@@ -8,18 +8,18 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Context="clr-namespace:Sandogh.DataLayer.Context;assembly=Sandogh.DataLayer" x:Class="Sandogh.App.MainWindow"
         mc:Ignorable="d"
-        Title="فرم اصلی" Localization.Attributes="fa-IR" Height="600" Width="800" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" >
+        Title="فرم اصلی" Localization.Attributes="fa-IR" Height="600" Width="800" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
     <DockPanel FlowDirection="RightToLeft">
-        <Grid DockPanel.Dock="Top" ZIndex="1" Background="White" >
+        <Grid DockPanel.Dock="Top" ZIndex="1" Visibility="Collapsed" Background="White">
             <StackPanel Orientation="Horizontal">
 
-                <Button x:Name="BtnUsers" Content="کاربران"  Margin="2" Click="BtnUsers_Click"/>
-                <Button x:Name="BtnTransaction" Content="تراکنش" Margin="2" Click="BtnTransaction_Click"/>
+                <Button x:Name="BtnUsers" Content="کاربران"  Margin="2" Click="BtnUsers_Click" />
+                <Button x:Name="BtnTransaction" Content="تراکنش" Margin="2" Click="BtnTransaction_Click" />
             </StackPanel>
         </Grid>
 
         <Expander DockPanel.Dock="Left" Header="منو"
-                  Foreground="Black" 
+                  Foreground="Black"
                   FontFamily="/Sandogh.App;component/Font/#Lalezar" ExpandDirection="Right"
                   IsExpanded="False" Background="White">
 
@@ -28,35 +28,39 @@
                     <time:TimeAutoUpdater x:Key="TimeAutoUpdater" />
                 </Grid.Resources>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="8*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="14*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackPanel Width="200" Margin="2">
                     <StackPanel.Resources>
-
                         <Style TargetType="Expander" BasedOn="{StaticResource MaterialDesignExpander}">
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="Background" Value="Gray"/>
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Background" Value="Gray" />
                         </Style>
                         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
-                            <Setter Property="Margin" Value="1"/>
-                            <Setter Property="Background" Value="DimGray"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Margin" Value="1" />
+                            <Setter Property="Background" Value="DimGray" />
+                            <Setter Property="Foreground" Value="White" />
                         </Style>
                     </StackPanel.Resources>
-                    <Expander Header="فایل" Foreground="White" Padding="0 2" >
-                        <Expander.Background>
-                            <SolidColorBrush Color="Gray"/>
-                        </Expander.Background>
+                    <Expander Header="مدیریت اشخاص">
                         <StackPanel>
-                            <Button Content="جدید"/>
-                            <Button Content="باز کردن"/>
+                            <Button Content="کاربران" Click="BtnUsers_Click"/>
+                            <Button Content="مشتریان" />
+                            <Button Content="ضامنین" />
                         </StackPanel>
                     </Expander>
-                    <Expander Header="ادیت" Foreground="White" >
+                    <Expander Header="تراکنش">
                         <StackPanel>
-                            <Button Content="کپی"/>
-                            <Button Content="درج"/>
+                            <Button Content="پرداخت" />
+                            <Button Content="واریز" />
+                            <Button Content="اقساط" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="تنظیمات">
+                        <StackPanel>
+                            <Button Content="سیستم" />
+                            <Button Content="پایگاه داده " />
                         </StackPanel>
                     </Expander>
                 </StackPanel>
@@ -64,20 +68,12 @@
                          Text="{Binding Source={StaticResource TimeAutoUpdater},Path=Now,StringFormat={}{0:F},
                          ConverterCulture=fa-ir,BindsDirectlyToSource=True}" TextAlignment="Center"
                          FontFamily="/Sandogh.App;component/Font/#Lalezar" />
-
-
-
             </Grid>
         </Expander>
 
         <Grid Background="Lavender">
             <Image Source="../../Images/BankingImage.png">
-
             </Image>
         </Grid>
-
     </DockPanel>
-
-
-
 </Window>

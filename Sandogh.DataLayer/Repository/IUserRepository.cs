@@ -6,9 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Server;
 
 namespace Sandogh.DataLayer.Repository
 {
@@ -16,7 +18,8 @@ namespace Sandogh.DataLayer.Repository
     {
         public UserFullView Login(string username, string password);
         public UserFullView GetUserFullDetailsById(int id);
-        public IList<UserFullView> GetAllUserFullDetails();
+        public IEnumerable<UserFullView> GetAllUserFullDetails();
+        public UserFullView GetUserFullDetailsByNationalCode(string nationalCode);
         public IList<UserSimpleView> GetAllUserSimpleDetails();
        // public Tbl_Users GetUserByID(int id);
        // public Tbl_Users GetUser();

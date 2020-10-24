@@ -1,4 +1,5 @@
 ﻿using Sandogh.DataLayer.Context;
+
 using System;
 using System.Windows;
 
@@ -14,20 +15,14 @@ namespace Sandogh.App
             InitializeComponent();
         }
 
-        
-
-       
-
-        private void MainWindow_Initialized(object sender, EventArgs e)
+        private void BtnTransaction_Click(object sender, RoutedEventArgs e)
         {
-            /*this.Dispatcher.InvokeAsync(() =>
+            using (TransactionWindow W_tranaction = new TransactionWindow())
             {
-                LoginWindow L = new LoginWindow();
-                {
-                    L.ShowDialog();
-                    Visibility = Visibility.Visible;
-                }
-            });*/
+                W_tranaction.Owner = this;
+                W_tranaction.ShowDialog();
+                W_tranaction.Dispose();
+            }
         }
 
         private void BtnUsers_Click(object sender, RoutedEventArgs e)
@@ -40,22 +35,23 @@ namespace Sandogh.App
             }
         }
 
-        private void BtnTransaction_Click(object sender, RoutedEventArgs e)
-        {
-            using (TransactionWindow W_tranaction = new TransactionWindow())
-            {
-                W_tranaction.Owner = this;
-                W_tranaction.ShowDialog();
-                W_tranaction.Dispose();
-            }
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-        //    var a=unitOfWork.UserRepository.GetUserWithJobDetailsByID(2);
+            //    var a=unitOfWork.UserRepository.GetUserWithJobDetailsByID(2);
         }
 
+        private void MainWindow_Initialized(object sender, EventArgs e)
+        {
+            /*this.Dispatcher.InvokeAsync(() =>
+            {
+                LoginWindow L = new LoginWindow();
+                {
+                    L.ShowDialog();
+                    Visibility = Visibility.Visible;
+                }
+            });*/
+        }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             RegisterationWindow r = new RegisterationWindow();
