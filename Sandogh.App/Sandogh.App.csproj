@@ -286,6 +286,9 @@
   <ItemGroup>
     <Resource Include="Images\BankingImage.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\User2Image.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
