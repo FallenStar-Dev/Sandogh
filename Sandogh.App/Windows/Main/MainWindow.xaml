@@ -12,7 +12,7 @@
     <DockPanel FlowDirection="RightToLeft">
         <Grid DockPanel.Dock="Top" ZIndex="1" Background="White" >
             <StackPanel Orientation="Horizontal">
-                
+
                 <Button x:Name="BtnUsers" Content="کاربران"  Margin="2" Click="BtnUsers_Click"/>
                 <Button x:Name="BtnTransaction" Content="تراکنش" Margin="2" Click="BtnTransaction_Click"/>
             </StackPanel>
@@ -69,7 +69,13 @@
 
             </Grid>
         </Expander>
-        <Rectangle></Rectangle>
+
+        <Grid Background="Lavender">
+            <Image Source="../../Images/BankingImage.png">
+
+            </Image>
+        </Grid>
+
     </DockPanel>
 
 
