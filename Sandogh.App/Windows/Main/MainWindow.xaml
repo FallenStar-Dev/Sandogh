@@ -18,11 +18,16 @@
             </StackPanel>
         </Grid>
 
-        <Expander DockPanel.Dock="Left" Header="منو"
+        <Expander DockPanel.Dock="Left"
                   Foreground="Black"
                   FontFamily="/Sandogh.App;component/Font/#Lalezar" ExpandDirection="Right"
                   IsExpanded="False" Background="White">
-
+<Expander.Header>
+    <StackPanel>
+        <Ellipse Fill="Black" Width="50" Height="50"></Ellipse>
+        <TextBlock>منو</TextBlock>
+    </StackPanel>
+</Expander.Header>
             <Grid>
                 <Grid.Resources>
                     <time:TimeAutoUpdater x:Key="TimeAutoUpdater" />
