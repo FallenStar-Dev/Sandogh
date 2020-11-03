@@ -22,12 +22,12 @@
                   Foreground="Black"
                   FontFamily="/Sandogh.App;component/Font/#Lalezar" ExpandDirection="Right"
                   IsExpanded="False" Background="White">
-<Expander.Header>
-    <StackPanel>
-        <Ellipse Fill="Black" Width="50" Height="50"></Ellipse>
-        <TextBlock>منو</TextBlock>
-    </StackPanel>
-</Expander.Header>
+            <Expander.Header>
+                <StackPanel>
+                    <Ellipse Fill="Black" Width="50" Height="50"></Ellipse>
+                    <TextBlock>منو</TextBlock>
+                </StackPanel>
+            </Expander.Header>
             <Grid>
                 <Grid.Resources>
                     <time:TimeAutoUpdater x:Key="TimeAutoUpdater" />
@@ -64,6 +64,7 @@
                     </Expander>
                     <Expander Header="تنظیمات">
                         <StackPanel>
+                            <Button Content="پیام کوتاه" Click="Button_Click_1" />
                             <Button Content="سیستم" />
                             <Button Content="پایگاه داده " />
                         </StackPanel>
@@ -77,7 +78,7 @@
         </Expander>
 
         <Grid Background="Lavender">
-            <Image Source="../../Images/BankingImage.png">
+            <Image Source="/Images/BankingImage.png">
             </Image>
         </Grid>
     </DockPanel>

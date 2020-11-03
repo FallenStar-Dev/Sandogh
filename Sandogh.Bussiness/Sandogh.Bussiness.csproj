@@ -34,9 +34,13 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SmsIrRestful, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SmsIrRestful.1.1.3\lib\SmsIrRestful.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +53,9 @@
     <Compile Include="HardwareInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistryOperate.cs" />
+    <Compile Include="SendMessage\ISendMessage.cs" />
+    <Compile Include="SendMessage\SendEmail.cs" />
+    <Compile Include="SendMessage\SendSms.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SystemInfo\" />
@@ -58,6 +65,9 @@
       <Project>{a8e7f5d5-f94c-4a05-baef-9a1882e92e0f}</Project>
       <Name>Sandogh.DataLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

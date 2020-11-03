@@ -5,12 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandogh.App"
         mc:Ignorable="d"
-        Title="SmsConfiguration" Height="450" Width="800" AllowsTransparency="True">
+        Title="SmsConfiguration" Height="450" Width="800" WindowStyle="None">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="../../../Images/"/>
+        <Image Source="/Images/SmsConfigImage.png" />
+        <StackPanel Grid.Column="1" Margin="0 30 0 30">
+            <TextBlock Text="تنظیمات پیام کوتاه" FontFamily="Lalezar" FontSize="35" HorizontalAlignment="Center"/>
+            <StackPanel  Margin="10" VerticalAlignment="Center" >
+                <TextBlock Text="API Key" Margin="5 15 5 15"/>
+                <TextBox TextWrapping="Wrap" Margin="5 15 5 15"/>
+                <TextBlock Text="Secret Key" Margin="5 15 5 15"/>
+                <TextBox Margin="5 15 5 15"/>
+                <Button Content="ذخیره" FontFamily="Lalezar" Background="#525695" BorderBrush="#E9EDF8" Click="Button_Click" Margin="15"/>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Window>

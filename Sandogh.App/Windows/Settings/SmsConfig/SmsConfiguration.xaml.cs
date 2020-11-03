@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Sandogh.Bussiness.SendMessage;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,12 @@ namespace Sandogh.App
         public SmsConfiguration()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SendSms sms = new SendSms("ebb92cc757ac922c5af2cc8", "Sepehr007");
+            sms.Send("09160330976", "تست");
         }
     }
 }

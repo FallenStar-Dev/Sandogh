@@ -1,4 +1,6 @@
-﻿using Sandogh.DataLayer.Context;
+﻿using MaterialDesignThemes.Wpf;
+
+using Sandogh.DataLayer.Context;
 
 using System;
 using System.Windows;
@@ -56,6 +58,12 @@ namespace Sandogh.App
         {
             RegisterationWindow r = new RegisterationWindow();
             r.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+           SmsConfiguration a= new SmsConfiguration();
+            a.ShowDialog();
         }
     }
 }
