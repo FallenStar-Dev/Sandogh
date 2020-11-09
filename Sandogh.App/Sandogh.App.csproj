@@ -303,6 +303,10 @@
   <ItemGroup>
     <Resource Include="Images\CreditPayment.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Calender.png" />
+    <Resource Include="Images\ClockBook.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
