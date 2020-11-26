@@ -18,16 +18,49 @@
             </StackPanel>
         </Grid>
 
-        <Expander DockPanel.Dock="Left"
+        <Expander x:Name="ExpMain" DockPanel.Dock="Left"
                   Foreground="Black"
                   FontFamily="/Sandogh.App;component/Font/#Lalezar" ExpandDirection="Right"
                   IsExpanded="False" Background="White">
-            <Expander.Header>
 
+            <Expander.Header>
                 <Grid>
-                    <Image Source="/Images/MenuImage.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    <Grid.Style>
+                        <Style TargetType="Grid" >
+                            <Setter Property="RenderTransform" >
+                                <Setter.Value>
+                                    <RotateTransform Angle="0" CenterX="50" CenterY="50"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation To="360" Duration="0:0:0:2" AccelerationRatio=".4" DecelerationRatio=".4"
+                                                                     Storyboard.TargetProperty="(Image.RenderTransform).(RotateTransform.Angle)"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation To="0" Duration="0:0:0:2" AccelerationRatio=".4" DecelerationRatio=".4"
+                                                                     Storyboard.TargetProperty="(Image.RenderTransform).(RotateTransform.Angle)"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </Grid.Style>
+                    <Image x:Name="CircleImage" Source="/Images/MenuImage.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock FontSize="20" HorizontalAlignment="Center"  VerticalAlignment="Center">منو</TextBlock>
+
                 </Grid>
+
 
             </Expander.Header>
             <Grid>
