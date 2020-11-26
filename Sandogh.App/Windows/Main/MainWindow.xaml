@@ -23,10 +23,12 @@
                   FontFamily="/Sandogh.App;component/Font/#Lalezar" ExpandDirection="Right"
                   IsExpanded="False" Background="White">
             <Expander.Header>
-                <StackPanel>
-                    <Ellipse Fill="Black" Width="50" Height="50"></Ellipse>
-                    <TextBlock>منو</TextBlock>
-                </StackPanel>
+
+                <Grid>
+                    <Image Source="/Images/MenuImage.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    <TextBlock FontSize="20" HorizontalAlignment="Center"  VerticalAlignment="Center">منو</TextBlock>
+                </Grid>
+
             </Expander.Header>
             <Grid>
                 <Grid.Resources>
@@ -59,6 +61,13 @@
                         <StackPanel>
                             <Button Content="پرداخت" />
                             <Button Content="واریز" />
+                            <Button Content="پرداخت قسط" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="گزارشات">
+                        <StackPanel>
+                            <Button Content="پرداختی ها" />
+                            <Button Content="واریزی ها" />
                             <Button Content="اقساط" />
                         </StackPanel>
                     </Expander>
@@ -66,7 +75,15 @@
                         <StackPanel>
                             <Button Content="پیام کوتاه" Click="Button_Click_1" />
                             <Button Content="سیستم" />
-                            <Button Content="پایگاه داده " />
+                            <Button Content="پایگاه داده" />
+                            <Button Content="ایمیل" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="پشتیبانی">
+                        <StackPanel>
+                            <Button Content="گرفتن نسخه پشتیبان" />
+                            <Button Content="بازگردانی اطلاعات" />
+                            <Button Content="تماس با پشتیبانی" />
                         </StackPanel>
                     </Expander>
                 </StackPanel>
