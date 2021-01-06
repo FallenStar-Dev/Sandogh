@@ -63,7 +63,7 @@
 
 
             </Expander.Header>
-            <Grid>
+            <Grid >
                 <Grid.Resources>
                     <time:TimeAutoUpdater x:Key="TimeAutoUpdater" />
                 </Grid.Resources>
@@ -71,7 +71,7 @@
                     <RowDefinition Height="14*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <StackPanel Width="200" Margin="2">
+                <StackPanel Width="200" Margin="2" CanVerticallyScroll="True"  >
                     <StackPanel.Resources>
                         <Style TargetType="Expander" BasedOn="{StaticResource MaterialDesignExpander}">
                             <Setter Property="Foreground" Value="White" />
@@ -83,6 +83,14 @@
                             <Setter Property="Foreground" Value="White" />
                         </Style>
                     </StackPanel.Resources>
+                    <Expander Header="وام">
+                        <StackPanel>
+                            <Button Content="تعریف وام" Click="Button_Click_2"/>
+                            <Button Content="درخواست وام" />
+                            <Button Content="پرداخت وام" />
+                            <Button Content="پرداخت قسط" />
+                        </StackPanel>
+                    </Expander>
                     <Expander Header="مدیریت اشخاص">
                         <StackPanel>
                             <Button Content="کاربران" Click="BtnUsers_Click"/>
@@ -94,14 +102,12 @@
                         <StackPanel>
                             <Button Content="پرداخت" />
                             <Button Content="واریز" />
-                            <Button Content="پرداخت قسط" />
                         </StackPanel>
                     </Expander>
                     <Expander Header="گزارشات">
                         <StackPanel>
                             <Button Content="پرداختی ها" />
                             <Button Content="واریزی ها" />
-                            <Button Content="اقساط" />
                         </StackPanel>
                     </Expander>
                     <Expander Header="تنظیمات">

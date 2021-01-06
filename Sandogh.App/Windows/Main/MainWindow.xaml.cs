@@ -1,5 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 
+using Sandogh.App.Windows.Supports;
+
 using Sandogh.DataLayer.Context;
 
 using System;
@@ -64,6 +66,12 @@ namespace Sandogh.App
         {
            SmsConfiguration a= new SmsConfiguration();
             a.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            BackupWindow bw = new BackupWindow();
+            bw.Show();
         }
     }
 }

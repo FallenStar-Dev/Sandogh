@@ -104,10 +104,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Validator\InputValidator.cs" />
+    <Compile Include="Windows\Persons\Customers\CustomerWindow.xaml.cs">
+      <DependentUpon>CustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Persons\Guarantors\GuarantorWindow.xaml.cs">
+      <DependentUpon>GuarantorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Settings\EmailConfig\EmailConfigWindow.xaml.cs">
+      <DependentUpon>EmailConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Settings\SmsConfig\SmsConfiguration.xaml.cs">
       <DependentUpon>SmsConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Users\AddOrEditUserWindow.xaml.cs">
+    <Compile Include="Windows\Settings\SystemConfig\SystemConfigWindow.xaml.cs">
+      <DependentUpon>SystemConfigWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Supports\BackupWindow.xaml.cs">
+      <DependentUpon>BackupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Supports\CallSupportWindow.xaml.cs">
+      <DependentUpon>CallSupportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Persons\Users\AddOrEditUserWindow.xaml.cs">
       <DependentUpon>AddOrEditUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -122,10 +140,10 @@
     <Compile Include="Windows\Settings\Connection\SetConnectionWindow.xaml.cs">
       <DependentUpon>SetConnectionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Transaction\TransactionsWindow.xaml.cs">
+    <Compile Include="Windows\Transactions\TransactionsWindow.xaml.cs">
       <DependentUpon>TransactionsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Users\UsersWindow.xaml.cs">
+    <Compile Include="Windows\Persons\Users\UsersWindow.xaml.cs">
       <DependentUpon>UsersWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -219,11 +237,35 @@
     <SplashScreen Include="Images\SplashEnterance.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Windows\Persons\Customers\CustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Persons\Guarantors\GuarantorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Settings\EmailConfig\EmailConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Settings\SmsConfig\SmsConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Users\AddOrEditUserWindow.xaml">
+    <Page Include="Windows\Settings\SystemConfig\SystemConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Supports\BackupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Supports\CallSupportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Persons\Users\AddOrEditUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,11 +289,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Transaction\TransactionsWindow.xaml">
+    <Page Include="Windows\Transactions\TransactionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Users\UsersWindow.xaml">
+    <Page Include="Windows\Persons\Users\UsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -309,6 +351,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MenuImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Windows\Reports\GainingReport\" />
+    <Folder Include="Windows\Reports\SpendingReport\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
