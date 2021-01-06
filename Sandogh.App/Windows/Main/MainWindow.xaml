@@ -71,6 +71,7 @@
                     <RowDefinition Height="14*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Width="200" Margin="2" CanVerticallyScroll="True"  >
                     <StackPanel.Resources>
                         <Style TargetType="Expander" BasedOn="{StaticResource MaterialDesignExpander}">
@@ -126,6 +127,7 @@
                         </StackPanel>
                     </Expander>
                 </StackPanel>
+                </ScrollViewer>
                 <TextBlock Grid.Row="1" VerticalAlignment="Center"
                          Text="{Binding Source={StaticResource TimeAutoUpdater},Path=Now,StringFormat={}{0:F},
                          ConverterCulture=fa-ir,BindsDirectlyToSource=True}" TextAlignment="Center"
